@@ -1,0 +1,280 @@
+---
+title: " "
+output:
+    bookdown::pdf_book:
+        toc: false    # printed manually later
+        toc_depth: 3
+        citation_package: natbib
+        latex_engine: xelatex
+        extra_dependencies: ["float", "subfiles", "pdfpages"]
+        keep_tex: true
+# lot: true    # list of tables, printed manually later
+# lof: true    # list of figures, printed manually later
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "Manuscript", output_format = "all") })
+documentclass: report
+#bibliography: FALSE
+mainfont: Times New Roman
+fontsize: 12pt
+linestretch: 1.5    # linespacing
+classoption: [a4paper]
+geometry: [top=2cm, bottom=2cm, right=2cm, left=2.5cm]
+# subparagraph: yes    # don't know what this does
+indent: true
+biblio-style: apalike
+colorlinks: true
+linkcolor: black
+citecolor: blue
+# toccolor: red
+# thanks: I thank...
+# abstract: Very long abstract.
+editor_options: 
+    chunk_output_type: console    # this is just a personal preference
+header-includes:
+  - \usepackage{titlesec}
+  - \titleformat{\chapter}{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+  - \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+---
+
+\subfile{title_page.tex}
+
+\newpage
+\pagenumbering{arabic}
+
+# Abstract {.unlisted .unnumbered}
+
+Non-communicable diseases (NCDs) have become a worldwide epidemic, posing a grave threat to healthcare systems worldwide. Adjusted for age, cardiovascular diseases (CVDs) are the leading cause of death among NCDs, with a 31% increase in mortality over the past 25 years. The most significant risk factor for cardiovascular diseases is hypertension, and early detection and prevention are crucial for reducing the burden of NCDs on healthcare systems. Despite the overwhelming evidence of the NCD epidemic's scope, global and national actions have been delayed. In this study, we utilized the 2017-18 dataset from the Bangladesh Demographic and Health Survey (BDHS) to create a NCD Vulnerability Index (NCDVI) for the early detection and prevention of hypertension. The NCDVI was constructed using only variables related to health behaviors, such as exercise, smoking, awareness of NCD and body weight. Multiple Correspondence Analysis (MCA) was the statistical method used to reduce the dimensions of these health behavior-related variables and produce factor scores which we eventually divided into five quintiles and created our NCDVI. The statistical significance of the index against hypertension suggests that it can be a valuable tool for identifying individuals at high risk of developing hypertension. However, adding psychological and social variables to the index could increase its usefulness and scope. A multilevel logistic regression model determined the confounder-adjusted relationship between NCDVI and hypertension. The model was determined using a likelihood ratio test. The analysis revealed a significant association between NCDVI and hypertension. We intend to use this index to identify population subgroups most susceptible to hypertension and implement policy changes to prevent an epidemic of non-communicable diseases. Also, this study's NCDVI can be a valuable tool for identifying individuals at high risk of developing any NCD, as the health-related variables considered in index creation correspond to all major types of NCD. Overall, this study contributes to ongoing efforts to combat the non-communicable diseases (NCDs) epidemic and highlights the urgency of preventing and managing NCDs.
+
+\newpage
+
+# Introduction
+
+## Background of the Study
+
+Health is an essential component of our social system. On a personal level, this refers to being in good mental and physical condition. On a social level, this requires a framework that effectively regulates public health facilities \citep{rothstein2002rethinking}. And an assault on public health can have disastrous implications for our society's day-to-day operations. The pandemic was a striking illustration of this. Health statistics play a significant role in preventing these threats to our civil system \citep{coccia2021pandemic}. One such threat, Non-Communicable Diseases(NCDs), may already be on the horizon. Global and national actions have been delayed despite the clear evidence of the scope of this burden and the danger it presents to our overburdened healthcare systems\citep{meetoo_chronic_2008}.
+
+\subfile{Figures/ncd_prev.tex}
+
+Why focus specifically on hypertension when several other NCDs have had deadly impacts worldwide? \citet{chobanian2003seventh} reports that hypertension is a significant public health issue, currently affecting approximately 1 billion individuals worldwide. Without the implementation of broad and effective preventive measures, the prevalence of hypertension is likely to increase as the population ages. Recent research undertaken in India by \citet{gupta_hypertension_2018} provides the impetus for this and as per the study, Hypertension ranks as India's most significant risk factor for cardiovascular diseases (CVD). Furthermore, CVD are the leading causes of mortality in India. Over the past 25 years, we have seen a 31% increase in mortality due to CVD when adjusted for age. This study is made even more intriguing by the general notion that people in Bangladesh and India have comparable nutritional and healthcare preferences \citep{rahman2017epidemiological}. 
+
+\citet{budreviciute_management_2020} states that the best prevention strategy is one that promotes lifestyle changes in areas such as diet, exercise, quitting smoking, and managing metabolic conditions. Another study by \citet{burke_lifestyle_2007} did a randomized control trial to show that improved health-related behaviors leads to lesser risks of CVD among hypertensive individuals. Hence, it is evident that a person's health decisions significantly impact whether or not they will develop hypertension. 
+
+The aim of \citet{bardage_hypertension_2001} was to describe the relationship between hypertension and health-related quality of life (HRQL) in a general population in Sweden, using the 36-item short form questionnaire (SF-36). The results showed that individuals with hypertension scored lower in most of the eight domains of the SF-36 compared to those without hypertension, based on linear regression analyses that controlled for age, sex, sociodemographic factors, and health-related factors. A similar study conducted among the elderly found that obesity in older women and diabetes in older men are the most significant factors negatively affecting health-related quality of life \citep{banegas_relationship_2007}. Hence, It seems apparent that it would be beneficial to have an indicator, like the SF-36 method, that helps decide whether a person is at risk of developing hypertension and should be more mindful of their dietary and healthcare choices.
+
+## Literature Review
+
+### Summary of Review Strategy
+
+In conducting this systematic review, we explored both PubMed and Google Scholar by utilizing various combinations of keywords such as "non-communicable diseases," "risk factors," "cardiovascular diseases," "diabetes," "hypertension," "health-related," "index," "demographic characteristics," "South Asia," and "Bangladesh." We then narrowed down the results by applying filters based on relevance and citation counts to focus on the most relevant studies.
+
+### Hypertension and its Risk Factors
+
+Initially, we examined the NCD landscape in Bangladesh. According to an article published on the \citet{icddrb_icddrb_2021} website, noncommunicable diseases accounted for 70% of deaths in this country. Even to the naked eye, it is evident that a significant proportion of deaths can be attributed to this single source. In terms of figures, the number of hypertension-related deaths in 2021 exceeded 75,000. The startling discovery that validated our interest in hypertension, however, was that nearly 20% of adults in Bangladesh had been diagnosed with hypertension \citep{rahman_prevalence_2018}.
+
+Now, we will take a deeper look at the risk factors of hypertension, starting with age. In a study by \citet{cohen_influence_2012}, the proportion of new hypertension cases associated with modifiable lifestyle factors tends to decline as people age. Nevertheless, because hypertension occurs more frequently in older adults, lifestyle modifications could potentially prevent a similar number of cases in both younger and older age groups. \citet{mceniery_age_2007} shows that as individuals age, their heart muscles typically become less efficient, which significantly impacts the pulmonary circulation system, particularly affecting the major arteries. Subsequently, the study also shows a notable association between a person's age and aortic stiffness. While the relationship between hypertension and aortic stiffness is more complex, it remains significant. This highlights the important connection between age and hypertension.
+
+Essential hypertension and diabetes mellitus both affect the vascular system and target major organs. Diabetic hypertensive patients are at a higher risk for left ventricular hypertrophy and coronary artery disease compared to those with only one condition \citep{grossman2008hypertension}. Furthermore in a study by \citet{10.1097/HJR.0b013e3280803f29} claims that when hypertension and diabetes are present, the life quality score, computed using SF-36, appears much lower than when either hypertension or diabetes is assessed separately. This demonstrates that diabetes should be considered as a confounder when modeling hypertension.
+
+Findings by \citet{connelly2022sex} indicate that the prevalence of hypertension varies between men and women, and the patterns of blood pressure changes are not consistent across sexes, which may lead to different disease outcomes. Evidence suggests that elevated blood pressure poses a greater cardiovascular risk for women. \citep{song_gender_2020} also claims that there are notable differences between genders when it comes to hypertension prevalence, with men exhibiting higher rates. Additionally, men tend to be less aware of their hypertension and are less inclined to seek treatment compared to women. These disparities also extend to biological factors. However, current hypertension guidelines often overlook these differences. Significant efforts are underway to better understand the potential reasons behind the gender disparity in hypertension rates.
+
+The type of area in which a person resides, either urban or rural, is part of their social environment, and there are regional variations in the prevalence of hypertension. Residents of urban areas have greater access to fast food and junk food \citep{zahangir_malnutrition_2017}. Since urbanization has an influence on CVD and, in Bangladesh, it varies by division, we can consider division to be an essential factor \citep{yusuf2001global}. Lastly, but most crucially, education level. While individuals pursuing a higher level of education must also undergo a significant increase in mental stress, this stress is a significantly less contributing factor to the development of hypertension in numerous individuals as poor working conditions invoke higher levels of risk. Hence, poorer and less educated people have a higher prevalence of hypertension \citep{leng2015socioeconomic}.
+
+Individuals in the wealthiest quintiles tend to spend more on high-calorie meals and are most susceptible to obesity. \citet{biswas_socio-economic_2016} shows this by computing the concentration index values of being hypertensive at different socio-economic classes. Furthermore, on average, unmarried men had higher blood pressure than married males. Males who had never been married had a more considerable risk of hypertension than men who were married, even after adjusting for confounding factors, despite having a lower BMI than men who were married \citep{ramezankhani2019associations}. Such outcomes may be partially explained by marital differences in insufficient social support, food intake, and economic aspects of solitary life \citep{lipowicz_marital_2005}.
+
+### Hypertension and Health-Related Indices
+
+Current research on health-related indices and non-communicable diseases (NCDs) emphasizes the importance of these indices in the early identification and management of NCDs. Various methodologies, including the development of standardized surveys like the SF-36 and WHOQOL, have been employed to create these health-related quality of life (HRQoL) indices. \citet{whoqol1998development} developed the WHO quality of life measure that encompasses four key domains: physical health, psychological well-being, social relationships, and environment. The physical health domain addresses aspects such as pain and discomfort, sleep quality, energy levels, mobility, daily living activities, dependence on medications and medical aids, and work capacity. 
+
+To compute the index scores for health-related quality-of-life indices, one of the most widely used methods is the SF-36 survey \citep{ware1993sf}. Developed by the Medical Outcomes Trust in Boston, MA, the SF-36 is a versatile, short-form health survey consisting of 36 questions. It provides an eight-scale profile of scores along with summary measures for physical and mental health. The method also has a shorter version, the SF-12 survey, which has been translated into over 40 languages through the International Quality of Life Assessment (IQOLA) project, making it a popular choice among researchers \citep{ware199612}. The RAND 36-Item Health Survey 1.0, distributed by RAND, includes the same items as the SF-36 but employs a slightly different scoring algorithm \citep{hays1993rand}.
+
+While existing indices predominantly utilize survey questionnaire methods in the development of an index for the early detection of non-communicable diseases (NCDs), we are implementing a novel approach that leverages statistical multivariate dimension reduction techniques, specifically multiple correspondence analysis (MCA). MCA facilitates the identification of patterns and associations among the categorical variables, allowing for the effective reduction of dimensionality while preserving the underlying relationships within the data. By integrating statistical rigor into the construction process, this index aspires to contribute significantly to the early identification and management of NCDs, ultimately supporting better public health outcomes.
+
+According to the SF-36 method, it is ideal to consider both physical and psychological health factors when constructing the index. \citet{cuffee2014psychosocial} categorized the psychological factors associated with hypertension into six main stressors: occupational stress, personality traits, mental health, housing instability, social support or isolation, and sleep quality. Furthermore, they cited sixteen studies that established a link between these stressors and blood pressure. However, obtaining data on these variables can be quite challenging; therefore, we have decided to focus solely on physical health-related factors for this particular index-building endeavor.
+
+The first physical health-related variable we will consider is occupation. \citet{grotto_hypertension_2008} asserts that occupation influences the occurrence of hypertension, as inadequate physical activity is strongly linked to this condition. Consequently, desk employees are more likely to develop hypertension compared to individuals in physically demanding jobs \citep{chomistek2012vigorous}. Additionally, obesity is increasingly recognized as a global epidemic, with over 1 billion obese individuals worldwide \citep{who_world_2022}. The co-occurrence of obesity and hypertension significantly raises prevalence rates, leading to a concerning increase in morbidity and presenting a serious public health challenge \citep{seravalle_obesity_2017}. A more recent study by \citet{seravalle2024obesity} demonstrates that multiple pathophysiological mechanisms are associated with both obesity and obesity-related hypertension. Therefore, doctor-recommended weight loss and exercise should be considered when constructing a health-related index. Given that BMI is a useful tool for measuring obesity, a person's BMI score should be regarded as a confounding factor when modeling hypertension \citep{jiang2016obesity}.
+
+Lifestyle changes such as exercise, dietary adjustments (including reducing alcohol consumption, lowering sodium intake, ensuring sufficient potassium intake, increasing the consumption of fruits, vegetables, nuts, and low-fat dairy, and reducing saturated fat), and weight loss can serve as alternatives or supplements to blood pressure medications \citep{bacon_effects_2004}. In individuals with obesity, combining exercise with weight loss has been found to be more effective than either intervention alone. Therefore, doctor-recommended smoking cessation and limiting salt intake should be considered when constructing a health-related index. Lastly, although we are only modeling hypertension status in our study, these variables used to measure vulnerability apply to all four major NCDs.
+
+# Data and Variables
+
+## Source of Data
+
+The Bangladesh Demographic and Health Survey (BDHS) 2017-18, the eighth national survey commissioned by USAID, was used for the analysis instead of the newer 2022 version because it provided more detailed data on NCDs. The Bangladesh Bureau of Statistics (BBS) provided enumeration areas (EAs) from the 2011 Population and Housing Census as the sampling frame \citep{bdhs2018misc}.
+
+## Variables Used in Analysis
+
+### Outcome Variable
+
+This study uses hypertension status as its outcome variable. After measuring each person's blood pressure three times, the average was calculated. If a person exhibited one or more of the following characteristics, they would be classified as hypertensive: systolic blood pressure (SBP) level is at or above 140 mmHg, diastolic blood pressure (SBP) level is 90 mmHg or greater and, takes prescribed medicine due to elevated blood pressure.
+
+### Variables Used in Index Building
+
+The following variables were used in constructing the NCD Vulnerability Index scores:
+
+- **Occupation Type:** The original variable in the data had many categories. For this study, we recoded these categories into three categories, such as "Not working" when they were either jobless or retired, "Not a labor taxing job" when they were white-collar job holders, and "Labor taxing job" when they were blue-collar job holders.
+
+- **BMI (Body Mass Index):** The WHO-assigned metrics for BMI calculation was used, and the usual four categories "Underweight," "Normal weight," "Pre-obesity," "Obesity class I," "Obesity class II," and "Obesity class III" were used.
+
+- **Advised to Exercise More for High BP:** Depending on whether or not a person was advised to exercise more by a healthcare specialist, two categories, "Yes" and "Otherwise," were created.
+
+- **Advised to Reduce Salt for High BP:** Similarly coded as the variable for exercise.
+
+- **Advised to Stop Smoking for High BP:** Similarly coded as the variable for exercise.
+
+- **Advised to Lose Weight for High BP:** Similarly coded as the variable for exercise.
+
+### Exposure Variable
+
+Using multiple correspondence analysis (MCA), we will calculate the factor scores and, then sort and classify into five groups: values in the 0th to 20th percentile labeled "Tier 1", 21th to 40th percentile labeled "Tier 2", 41th to 60th percentile labeled "Tier 3", 61th to 80th percentile labeled "Tier 4", 81th to 100th percentile labeled "Tier 5".
+
+### Explanatory Variables
+
+The following variables were included in this study as confounders:
+
+- **Age of Household Member:** This was originally a continuous variable that was re-coded into six categories "18-25", "25-35", "35-50", "50-65", "65-75", and "75+".  
+ 
+- **Diabetic:** This variable has two categories "Yes" and "No." If a person exhibited one or both of the following characteristics, they would be classified as diabetic: if the blood glucose level of a person is above seven mg/L and, due to elevated blood glucose level, takes prescribed medicine.
+
+- **Sex of Household Member:** Kept in original coding.
+
+- **Education Level:** Kept in original coding.
+
+- **Marital Status:** The original variable recorded a person's current marital status as never married, married, widowed, or divorced. We re-coded this into two categories "Married" when the person was married and "Single" for all other cases.
+
+- **Wealth Index:** Kept in oriiginal coding.
+
+- **Division:** Kept in original coding.
+
+- **Place of Residence:** Kept in original coding.
+
+# Methodology
+
+## Multiple Correspondence Analysis
+
+As stated, this study aims to develop a NCD Vulnerability Index; hence, we must employ multivariate methodologies. We can not utilize PCA (Principal Component Analysis) because, in PCA, principal components are derived from the correlation or covariance matrix, which is impractical for categorical variables. Hence, we would employ MCA (Multiple Correspondence Analysis).
+
+Let, there are $p$ variables each with their own number of levels($k$) and there are $n$ observations. So, at first we form a $n \times {pk}$ indicator matrix. This will only consist of 1's and 0's. 
+
+$$  \begin{aligned}
+  X &= \begin{bmatrix} 
+    1 & \dots  & 0\\
+    \vdots & \ddots & \vdots\\
+    0 & \dots  & 1 
+    \end{bmatrix}.
+  \end{aligned}$$
+
+To make an indicator, for example we have two categorical variables, one is $\text{gender} = (\text{male}, \text{female})$ and another being $\text{wealth index} = (\text{poor} , \text{middle}, \text{rich})$. Let, an individual be male and rich. Then the first row of the indicator matrix would be, 
+
+$$\begin{aligned}
+X &= \begin{bmatrix}
+          1 & 0 & 0 & 0 & 1
+       \end{bmatrix}. \\
+\end{aligned}$$
+
+
+Once the indicator matrix has been formed, we need the probability matrix $Z =  N^{-1}X$, where $N$ is the grand total. Then we calculate the row total, $r$, and column total, $c$, to form the following matrices:
+
+$$\begin{aligned} D_{c} &= diag(c),\\ 
+D_{r} &= diag(r). \end{aligned} $$
+
+Then the factor scores are calculated using singular value decomposition using the following formula,
+
+$$D_r^{-\frac{1}{2}}(Z - rc^T )D_c^{-\frac{1}{2}} = P \Delta Q^T. $$
+
+When two factor scores are pretty close to one another, they tend to choose the same levels of the nominal variables. Hence, MCA is useful for creating a health-related index since it detects clusters or groups of persons with similar features across various variables. This can assist researchers in gaining a deeper understanding of the intricate interplay between many health-related factors and how they influence overall health outcomes \citep{abdi2007multiple}. 
+
+## Multilevel Logistic Model
+
+The BDHS data have a hierarchy due to the multistage sampling strategy. Members of the same cluster likely have specific characteristics, resulting in correlated reactions within a group. In this circumstance, a fixed-effects logistic regression model fails to capture the cluster-related variability. We employ the multilevel logistic regression model to model clustered binary responses \citep{liu2006mixed}. 
+
+Let $Y_{ij}$ be the binary outcome that $j$th household member in $i$th cluster was hypertensive and $\pi_{ij}$ be the chance of such an occurrence. Let $X=\{X_{1ij}, X_{2ij},\ldots, X_{pij}\}$ denotes the set of $p$ observed confounders for $j$th household member in $i$th cluster. Then following equation is used to model the data:
+
+
+$$\text{log}\left(\frac{\pi_{ij}}{1-\pi_{ij}}\right)=\beta_0+\beta_{1} X_{1ij}+ \beta_{2} X_{2ij} +\ldots+\beta_{k} X_{kij}+u_i,$$
+
+\noindent
+where, $\beta_h$ is the coefficient associated with the confounder $X_h$ and $u_i$ is the random effect of $i$th cluster. 
+
+The model under consideration is a random intercept model. We assume that $u_i \sim N(0,\sigma_u^2)$. The $\beta$s defines the impact of confounders averaged across clusters, whereas random effects $u_i$ correct for the cluster-specific mean response. 
+
+Intraclass Correlation Coefficient (ICC) can be calculated using variances between and within classes. Now, $\text{Residual Variance} \sim (0,\pi^2/3)$ \citep{powers2008statistical}. 
+
+  
+$$\text{ICC,  }\rho=\frac{\sigma^2_u} {\sigma^2_u+\frac{\pi^2}{3}}. \tag{3.2}$$
+
+The interpretations being, 
+
+$$\begin{aligned} \rho &\approx 0 \text{: No intra-cluster variation in the data. } \\
+\rho &> 0 \text{: There is intra-cluster variation in the data.} \end{aligned}$$
+
+# Results and Analysis
+
+## Bivariate Analysis
+
+The hypertension prevalence of the household members included in the BDHS 2017-18 dataset by levels of the NCD vulnerability index are shown in the table below:
+
+```{r bitab, echo=FALSE,message=FALSE,warning=FALSE}
+source("R/bi_tab.R")
+
+as_kable_extra(bi_tab_short,
+               booktabs = TRUE,
+               longtable = TRUE,
+               caption = "Prevalence of hypertension by levels of the confounders for household members from BDHS 2017-18 data.",
+               linesep = "") %>%
+  kableExtra::kable_styling(latex_options = c("repeat_header")) 
+  # kableExtra::add_header_above(c(" ", "Hypertensive" = 2, " "))
+```
+
+
+We can observe from table \@ref(tab:bitab) that our NCD Vulnerability Index is highly correlated with hypertension. We see that the unadjusted prevalence of hypertension increases from tier 1 to 5 as the first tier has 15% prevalence, while the last tier has 72%. Moreover, an notably sharp increase in hypertension prevalence happens from tier 4 (26%) to tier 5. From the graphical representation of the prevalence of hypertension and average NCDVI score by division we can see that the maps do not exactly match up. However, through further investigation we saw that the average NCDVI score works as a decent proxy for the prevalence of hypertension in divisions where the proportion of tiers 3, 4 and 5 are higher. Rangpur and Rajshahi have a high tier 1 percentage, and so the  average NCDVI score do not provide a decent proxy for hypertension prevalence in those divisions.
+
+&nbsp;
+
+\input{Figures/maps.tex}
+
+## Multilevel Logistic Regression Analysis
+
+Using our survey data, we fitted both binary logistic and multilevel logistic regression models. Subsequently, a likelihood ratio test was performed to select the model that best fits our data. As, multilevel model seemed significantly more likely to fit our data, only the results from the multilevel model is used in further analysis. Following are the results table and its interpretations:
+
+```{r multitab, echo=FALSE, warning=FALSE, message=FALSE}
+source("R/multilevel_model.R")
+
+as_kable_extra(multimod_tab,
+               booktabs = T,
+               longtable = T,
+               caption = "Results of multilevel logistic regression analysis of hyphenation on NCD Vulnerability Index (NCDVI) adjusted for confounding and survey weights.",
+               linesep = "") %>% 
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>% 
+  kableExtra::kable_styling(latex_options = c("repeat_header")) 
+```
+
+The results of the multilevel regression indicate no significant difference between tiers 1 and 2 in terms of hypertension risk. However, beginning with tier 3, there is a substantial difference in the odds of hypertension compared to the base level. People in tier 3 had 41% higher odds, on average, of being hypertensive than those in tier 1. Similar conclusions can be found for tier 4 (OR = 2.39). By far, the most considerable difference was seen in the OR between tier 5 and the reference group as those in tier 5 had 14.5 times greater odds, on average, when compared to the base group.
+
+All age categories had statistically significant odds ratios, with an increasing trend as individuals aged. The groups "65-75" (OR=9.56, 95% CI=[7.43, 12.3]) and "75+" (OR=18.5, 95% CI=[13.2, 25.9]) have the highest OR values, suggesting that retired individuals are at the most significant risk. On the other hand, unsurprisingly, those with diabetes did have significantly higher probabilities of hypertension than those without diabetes. Moreover, there was statistically significant difference between the genders, with the OR being 0.83. 
+
+There is no statistically significant variation in odds between educational levels except for higher education. However, marital status had a effect, as single individuals had 41% higher hypertension odds than married individuals. This is possibly due to the fact that the lack companionship single people face, has a psychological effect. Although, it is of little consequence how much wealth a person possesses, as the variation in odds between wealth categories were minimal. The division in which a person resided was irrelevant for most levels. Conversely, there was virtually little distinction between urban and rural residents, as the OR value was 1.01.
+
+# Discussion and Conclusion
+
+## Discussion
+
+We discovered that the NCD Vulnerability Index (NCDVI) had an increasing trend in hypertension risk from tier 1 to 5, both before and after adjustment for confounding. Moreover, similar factor scores correspond to the same levels of nominal variables, as determined by the interpretation of factor scores in multiple correspondence analysis. From this information, we may deduce that the persons in tier 1 do not have a doctor-recommended exercise, diet, or smoking cessation plan and also have a healthy BMI. In contrast, those in tier 5 will exhibit the exact opposite characteristics. Then, the following classifications are possible as per the increasing trend in risk:
+
+\input{newcode.tex}
+
+If a person is instructed to quit smoking or lose weight, it is evident that their smoking or eating habits are hazardous to their health. So, if someone falls into one of our NCDVI's tiers 3, 4, or 5, they must adopt more sustainable health behaviors. These practices make individuals very much prone to hypertension, presuming they are not already hypertensive. Therefore, utilizing a NCD Vulnerability score generated exclusively from health choice-related factors is a helpful method for identifying demographic subgroups with the highest hypertension risk. 
+
+## Recommendations and Further Scope of the Study
+
+While health habit-related variables such as exercise, smoking, and body weight are unquestionably crucial for predicting hypertension, incorporating psychological and social factors into the NCD Vulnerability Index can increase its utility and scope. Such is also stated by the SF Questionnaire, which is recognized for its merit in the measurement of the overall well-being of an individual \citep{stewart1992measuring}. 
+
+Stress, anxiety, depression, and social support significantly impact an individual's health and may contribute to hypertension. Anxiety and depression also impact cardiovascular health negatively, and those who suffer from these conditions are more likely to develop hypertension \citep{cohen2015state}. In contrast, social support is advantageous for mental and physical health and can improve quality of life. Thus, reducing vulnerability \citep{berkman1984assessing}. Incorporating psychological and social factors into the index can provide a more comprehensive understanding of an individual's overall health and increase the index's utility and scope for early detection of hypertension.
+
+Air pollutants such as ozone, nitrogen oxides, and particulate matter have been linked to respiratory illnesses, cardiovascular diseases, and premature death. The adverse effects of ambient air pollutants are not limited to physical health alone; they also significantly affect mental health and quality of life \citep{carlisle2001exercise}. Inhabitants of regions with high levels of ambient air pollutants frequently report higher levels of stress, anxiety, and depression. By including ambient air pollutants as a variable in the NCD Vulnerability Index, policymakers and public health officials can identify areas with high levels of pollutants and take measures to reduce pollution levels, thereby significantly improving the overall quality of life for individuals in those areas \citep{cai2016associations}.
+
+## Conclusion
+
+Based on the findings of this study, a NCD Vulnerability Index constructed with health habit-related variables may be a valuable tool for detecting and preventing hypertension at an early stage. The statistical significance of the hypertension index indicates that it is a reliable predictor of hypertension risk. This study emphasizes the significance of promoting healthy habits and lifestyle choices for the prevention and management of hypertension.
+
+\bibliography{ref.bib}
