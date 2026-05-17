@@ -1,4 +1,3 @@
-# loading libraries
 library(tidyverse)
 library(foreign)
 library(haven)
@@ -9,15 +8,13 @@ library(Hmisc)
 library(gt)
 library(gtsummary)
 library(survey)
-# using pacman install and load other required packages
 pacman::p_load(sf, terra, dplyr, tidyr, ggplot2, broom, plm, openxlsx)
 
-
-# loading data
+# data
 dat_18 <- read_dta("Datasets/Data_with_level_wgt_PR7/PR7_with_level_wgt.dta")
 
 
-# creating response
+# response
 dat_18 <- dat_18 %>% 
   filter(is.na(sb333aa) == FALSE | is.na(sb333ab) == FALSE) %>% 
   mutate(sbp = sb333aa,
@@ -32,8 +29,8 @@ dat_18 <- dat_18 %>%
 labelled::var_label(dat_18$hyper) <- "Hypertensive"
 
 
-# selection of variables to create the index
-  
+# index inputs
+
 ## occupation
 dat_18 <- dat_18 %>% 
   filter(is.na(sb308) == FALSE & sb308 != 96 & sb308 != 98) %>%
@@ -174,10 +171,67 @@ labelled::var_label(dat_18$wealth_index) <- "Wealth Index"
 labelled::var_label(dat_18$area_res) <- "Area of Residence"
 labelled::var_label(dat_18$division) <- "Division"
 
-# subsetting the data
-# dat_18 <- dat_18 %>% 
-#   select(hv001, hv005, hv021, hv023, hyper, occupation,
-#          BMI, BMI_cat, stop_smok, exer_more, lose_wgt, salt_intake,
-#          age, age_cat, diabetic, sex, educ, marital_status, wealth_index,
-#          area_res, division) %>% 
-#   drop_na()
+# structural / household-environmental inputs
+# NA on a household-roster item treated as least-vulnerable category
+# (same convention as sb318b-e above).
+
+## cook_fuel: clean (electricity/LPG/natural gas/biogas) vs solid/polluting
+dat_18 <- dat_18 %>%
+  mutate(cook_fuel = case_when(hv226 %in% c(1, 2, 3, 4) ~ 0,
+                               hv226 %in% c(5, 6, 7, 8, 9, 10, 11) ~ 1,
+                               TRUE ~ 0)) %>%
+  mutate(cook_fuel = factor(cook_fuel,
+                            levels = c(0, 1),
+                            labels = c("Clean Fuel", "Solid/Polluting Fuel")))
+
+labelled::var_label(dat_18$cook_fuel) <- "Cooking Fuel Type"
+
+## water_source: piped/treated vs tubewell vs unimproved
+dat_18 <- dat_18 %>%
+  mutate(water_source = case_when(hv201 %in% c(11, 12, 13, 14, 51) ~ 0,
+                                  hv201 %in% c(21, 31, 41, 43) ~ 1,
+                                  hv201 %in% c(32, 42, 61, 62, 71, 96) ~ 2,
+                                  TRUE ~ 0)) %>%
+  mutate(water_source = factor(water_source,
+                               levels = c(0, 1, 2),
+                               labels = c("Piped/Treated",
+                                          "Tubewell/Protected",
+                                          "Unimproved/Surface")))
+
+labelled::var_label(dat_18$water_source) <- "Drinking Water Source"
+
+## toilet_type: JMP-improved vs unimproved
+dat_18 <- dat_18 %>%
+  mutate(toilet_type = case_when(hv205 %in% c(11, 12, 13, 21, 22, 31, 41) ~ 0,
+                                 hv205 %in% c(14, 15, 23, 42, 43, 51, 96) ~ 1,
+                                 TRUE ~ 0)) %>%
+  mutate(toilet_type = factor(toilet_type,
+                              levels = c(0, 1),
+                              labels = c("Improved", "Unimproved")))
+
+labelled::var_label(dat_18$toilet_type) <- "Toilet Facility Type"
+
+## cook_location (hv241 + hv242): indoor-air-pollution exposure proxy
+dat_18 <- dat_18 %>%
+  mutate(cook_location = case_when(hv241 == 1 & (hv242 == 0 | is.na(hv242)) ~ 2,
+                                   hv241 == 1 & hv242 == 1 ~ 1,
+                                   hv241 %in% c(2, 3, 7) ~ 0,
+                                   TRUE ~ 0)) %>%
+  mutate(cook_location = factor(cook_location,
+                                levels = c(0, 1, 2),
+                                labels = c("Outdoors/Separate Building",
+                                           "In House, Separate Kitchen",
+                                           "In House, No Separate Kitchen")))
+
+labelled::var_label(dat_18$cook_location) <- "Cooking Location"
+
+## crowding: members / sleeping rooms > 3 (WHO)
+dat_18 <- dat_18 %>%
+  mutate(crowding = case_when(hv216 == 0 ~ 1,
+                              !is.na(hv009) & !is.na(hv216) & hv216 > 0 & (hv009 / hv216) > 3 ~ 1,
+                              TRUE ~ 0)) %>%
+  mutate(crowding = factor(crowding,
+                           levels = c(0, 1),
+                           labels = c("Not Crowded", "Crowded")))
+
+labelled::var_label(dat_18$crowding) <- "Household Crowding (>3 per Sleeping Room)"

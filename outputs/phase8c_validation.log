@@ -1,0 +1,119 @@
+=== Phase 8c: BDHS 2022 external validation (6-input sensitivity NCDVI) ===
+Run: 2026-05-16 10:35:26 
+
+Loaded 2017-18 sensitivity-MCA artifacts.
+  Inputs: occupation, BMI_cat, cook_fuel, water_source, toilet_type, crowding 
+  Score range (2017-18): -2.117 to 0.775 
+  Quintile cuts on scores_std: 0, 0.614, 0.741, 0.829, 0.878, 1 
+  Sign flipped in 2017-18 fit: TRUE 
+
+BDPR81 loaded: N = 132463 rows.
+After women age >= 18 + shbpbg == 1: N = 8307 
+BDHR81 long: N = 13478 biomarker-slot rows.
+BDIR81 loaded: N = 30078 rows.
+After PR <- HR <- IR join: N = 8307 
+After requiring non-missing v716 (occupation): N = 5213 
+
+After complete NCDVI inputs: N = 5098 
+After valid outcome: N = 5082   (HTN positive = 835 , prev = 0.164 )
+
+=== 2022 tier distribution (after projection + 2017-18 quintile cuts) ===
+
+Tier 1 Tier 2 Tier 3 Tier 4 Tier 5 
+  4268    582    177     15     40 
+
+=== 2022 HTN prevalence by tier (with sample weights) ===
+# A tibble: 5 × 5
+  ncdvi_se     n htn_n prev_unwt prev_wt
+  <fct>    <int> <int>     <dbl>   <dbl>
+1 Tier 1    4268   630     0.148   0.143
+2 Tier 2     582   142     0.244   0.233
+3 Tier 3     177    44     0.249   0.244
+4 Tier 4      15     4     0.267   0.258
+5 Tier 5      40    15     0.375   0.338
+
+=== Unadjusted (svyglm) OR by tier vs Tier 1 ===
+
+Call:
+svyglm(formula = hyper ~ ncdvi_se, design = des, family = quasibinomial())
+
+Survey design:
+svydesign(id = ~hv021, strata = ~hv023, weights = ~sampling_wgt, 
+    data = dat_22, nest = TRUE)
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    -1.79139    0.04962 -36.103  < 2e-16 ***
+ncdvi_seTier 2  0.60172    0.12080   4.981 8.09e-07 ***
+ncdvi_seTier 3  0.66197    0.22944   2.885  0.00404 ** 
+ncdvi_seTier 4  0.73539    0.66047   1.113  0.26593    
+ncdvi_seTier 5  1.12107    0.35596   3.149  0.00171 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasibinomial family taken to be 1.000197)
+
+Number of Fisher Scoring iterations: 4
+
+
+=== Adjusted (svyglm) OR by tier vs Tier 1 (women-only confounders) ===
+
+Call:
+svyglm(formula = as.formula(paste("hyper ~ ncdvi_se +", rhs)), 
+    design = des, family = quasibinomial())
+
+Survey design:
+svydesign(id = ~hv021, strata = ~hv023, weights = ~sampling_wgt, 
+    data = dat_22, nest = TRUE)
+
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          -3.613916   0.260144 -13.892  < 2e-16 ***
+ncdvi_seTier 2        0.507424   0.140599   3.609 0.000332 ***
+ncdvi_seTier 3        0.501671   0.263410   1.905 0.057293 .  
+ncdvi_seTier 4        0.994258   0.742961   1.338 0.181298    
+ncdvi_seTier 5        1.254252   0.394960   3.176 0.001567 ** 
+diabeticYes           0.262507   0.255259   1.028 0.304157    
+age_cat25-35          1.364661   0.178993   7.624    9e-14 ***
+age_cat35-50          2.269267   0.179930  12.612  < 2e-16 ***
+educPrimary           0.044227   0.138546   0.319 0.749661    
+educSecondary        -0.073085   0.144563  -0.506 0.613342    
+educHigher           -0.261377   0.194048  -1.347 0.178469    
+marital_statusSingle -0.052990   0.192503  -0.275 0.783201    
+wealth_indexPoorer    0.111520   0.146655   0.760 0.447285    
+wealth_indexMiddle    0.024546   0.159820   0.154 0.877986    
+wealth_indexRicher    0.356059   0.155605   2.288 0.022452 *  
+wealth_indexRichest   0.215259   0.173512   1.241 0.215213    
+divisionChittagong    0.121861   0.195411   0.624 0.533106    
+divisionDhaka        -0.197553   0.193913  -1.019 0.308701    
+divisionKhulna        0.046154   0.196904   0.234 0.814752    
+divisionMymensingh    0.159419   0.211116   0.755 0.450454    
+divisionRajshahi      0.334317   0.209588   1.595 0.111184    
+divisionRangpur      -0.003468   0.204043  -0.017 0.986444    
+divisionSylhet        0.376074   0.189018   1.990 0.047061 *  
+area_resUrban         0.191699   0.106020   1.808 0.071059 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasibinomial family taken to be 0.9857135)
+
+Number of Fisher Scoring iterations: 6
+
+
+=== Tier-level OR table (2022 external) ===
+Unadjusted:
+   tier   OR lo95 hi95        p
+ Tier 2 1.83 1.44 2.31 8.09e-07
+ Tier 3 1.94 1.24 3.04 4.04e-03
+ Tier 4 2.09 0.57 7.61 2.66e-01
+ Tier 5 3.07 1.53 6.16 1.71e-03
+
+Adjusted:
+   tier   OR lo95  hi95        p
+ Tier 2 1.66 1.26  2.19 0.000332
+ Tier 3 1.65 0.99  2.77 0.057300
+ Tier 4 2.70 0.63 11.59 0.181000
+ Tier 5 3.51 1.62  7.60 0.001570
+
+Saved outputs/phase8c_validation.rds
+Saved outputs/phase8c_dat_2022.rds (analysis frame for Phase 8d)

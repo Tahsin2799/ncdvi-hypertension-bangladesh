@@ -7,4 +7,4 @@ mod_logit <- glm(hyper ~ ncdvi + diabetic + age_cat + sex + educ +
                      weights = sampling_wgt,
                      family = binomial(link = "logit"))
 
-lrtest_table <- lrtest(mod_logit, multimod_1)
+lrtest_table <- lrtest(mod_logit, multimod)

@@ -1,0 +1,155 @@
+=== Phase 8b: BDHS 2022 variable audit ===
+Run: 2026-05-16 03:23:37 
+
+File identification:
+  PR_2018 Datasets/BDPR7RDT/BDPR7RFL.DTA                     N= 89819  year(s)=2017,2018
+  PR_2022 Datasets/BDPR81DT/BDPR81FL.DTA                     N=132463  year(s)=2022
+  IR_2018 Datasets/BDIR7RDT/BDIR7RFL.DTA                     N= 20127  year(s)=2017,2018
+  IR_2022 Datasets/BDIR81DT/BDIR81FL.DTA                     N= 30078  year(s)=2022
+  HR_2022 Datasets/BDHR81DT/BDHR81FL.DTA                     N= 30018  year(s)=2022
+  BR_2022 Datasets/BDBR81DT/BDBR81FL.DTA                     N= 64722  year(s)=2022
+
+Column counts:
+  PR_2018 422
+  PR_2022 549
+  IR_2018 5243
+  IR_2022 5425
+  HR_2022 3751
+  BR_2022 1238
+
+Direct presence of 2017-18 variable names across files:
+ var     label                                       PR_2018 PR_2022 HR_2022
+ sb308   occupation                                  TRUE    FALSE   FALSE  
+ sb318b  advised reduce salt                         TRUE    FALSE   FALSE  
+ sb318c  advised lose weight                         TRUE    FALSE   FALSE  
+ sb318d  advised stop smoking                        TRUE    FALSE   FALSE  
+ sb318e  advised exercise more                       TRUE    FALSE   FALSE  
+ sbbm    BMI scalar                                  TRUE    FALSE   FALSE  
+ hv226   cooking fuel                                TRUE     TRUE    TRUE  
+ hv201   water source                                TRUE     TRUE    TRUE  
+ hv205   toilet type                                 TRUE     TRUE    TRUE  
+ hv241   kitchen has separate room (dropped Phase 5) TRUE     TRUE    TRUE  
+ hv242   kitchen location (dropped Phase 5)          TRUE     TRUE    TRUE  
+ hv009   household members (crowding numerator)      TRUE     TRUE    TRUE  
+ hv216   sleeping rooms (crowding denominator)       TRUE     TRUE    TRUE  
+ sb333aa BP reading 1 (2017-18 code)                 TRUE    FALSE   FALSE  
+ sb333ab BP reading 2 (2017-18 code)                 TRUE    FALSE   FALSE  
+ sb318a  currently on BP medication                  TRUE    FALSE   FALSE  
+ sb335b  glucose mmol/L                              TRUE    FALSE   FALSE  
+ hv001   PSU                                         TRUE     TRUE    TRUE  
+ hv005   household weight                            TRUE     TRUE    TRUE  
+ hv021   PSU (strat)                                 TRUE     TRUE    TRUE  
+ hv023   stratum                                     TRUE     TRUE    TRUE  
+ hv024   division                                    TRUE     TRUE    TRUE  
+ hv025   urban/rural                                 TRUE     TRUE    TRUE  
+ hv104   sex                                         TRUE     TRUE   FALSE  
+ hv105   age                                         TRUE     TRUE   FALSE  
+ hv106   education                                   TRUE     TRUE   FALSE  
+ hv115   marital status                              TRUE     TRUE   FALSE  
+ hv270   wealth index                                TRUE     TRUE    TRUE  
+ IR_2022
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+ FALSE  
+
+BDHS 2022 module variables (by pattern):
+  women_BP_readings_2022 (PR_2022): 27 cols
+    first 6: wbp1, wbp2, wbp3, wbp4, wbp5, wbp6 ...
+  men_BP_readings_2022 (PR_2022): 27 cols
+    first 6: mbp1, mbp2, mbp3, mbp4, mbp5, mbp6 ...
+  women_anthro_HR_2022 (HR_2022): 312 cols
+    first 6: ha0_1, ha0_2, ha0_3, ha0_4, ha0_5, ha0_6 ...
+  men_anthro_HR_2022 (HR_2022): 342 cols
+    first 6: hb0_1, hb0_2, hb0_3, hb0_4, hb0_5, hb0_6 ...
+  ncd_module_PR_2022 (PR_2022): 70 cols
+    first 6: sb316, sb323, sb324, sb326a, sb326b, sb326c ...
+  ncd_module_HR_2022_wide (HR_2022): 522 cols
+    first 6: sb316_1, sb316_2, sb316_3, sb316_4, sb316_5, sb316_6 ...
+  ncd_selection_indicator (PR_2022): 1 cols
+    examples: shbpbg 
+  biomarker_sel_IR_2022 (IR_2022): 5 cols
+    examples: v754bp, v754cp, v754dp, v754jp, v754wp 
+
+BDHS 2017-18 -> 2022 variable mapping for NCDVI:
+ ncdvi_role            var_2018_in_PR     
+ occupation            sb308              
+ BMI_cat               sbbm               
+ salt_intake (advice)  sb318b             
+ lose_wgt (advice)     sb318c             
+ stop_smok (advice)    sb318d             
+ exer_more (advice)    sb318e             
+ cook_fuel             hv226              
+ water_source          hv201              
+ toilet_type           hv205              
+ crowding              hv009/hv216        
+ outcome: SBP+DBP+meds sb333aa,ab + sb318a
+ diabetic (glucose)    sb335b             
+ location_2022                                                                                             
+ BDIR81 v716/v717 (women only; BDPR81 lacks); no BDMR81 (no men's interview, same as 2017-18)              
+ Compute from BDHR81 ha2_k (height) + ha3_k (weight) per woman slot; hb2_k / hb3_k for men                 
+ ABSENT in all 2022 files (sb318b not found)                                                               
+ ABSENT in all 2022 files (sb318c not found)                                                               
+ ABSENT in all 2022 files (sb318d not found)                                                               
+ ABSENT in all 2022 files (sb318e not found)                                                               
+ BDPR81 hv226 (present)                                                                                    
+ BDPR81 hv201 (present)                                                                                    
+ BDPR81 hv205 (present)                                                                                    
+ BDPR81 hv009 / hv216 (present)                                                                            
+ BDPR81 wbp1 / mbp1 + readings; ABSENT: sb318a meds (must derive from sb332-sb340 if present in HR)        
+ ABSENT (sb335b not found in 2022 PR, HR, or IR). Likely in a separate biomarker file we have not yet found
+ status                                 
+ PARTIAL (women only, BDIR81)           
+ PRESENT (wide format, requires reshape)
+ ABSENT                                 
+ ABSENT                                 
+ ABSENT                                 
+ ABSENT                                 
+ PRESENT                                
+ PRESENT                                
+ PRESENT                                
+ PRESENT                                
+ PARTIAL (BP yes; BP meds need check)   
+ UNKNOWN (further file search)          
+
+--- VERDICT for Phase 8c ---
+(a) Full 10-input primary NCDVI: NOT transportable. All four sb318 advice
+    variables (b,c,d,e) absent from BDHS 2022 across PR, HR, IR. Confirmed.
+(b) 6-input sensitivity NCDVI (occupation + BMI + cook_fuel + water_source +
+    toilet_type + crowding): TRANSPORTABLE WITH ENGINEERING.
+    - 4 structural inputs (cook_fuel, water_source, toilet_type, crowding):
+      directly available in BDPR81 (one row per household member).
+    - BMI: must be computed from BDHR81 wide anthropometry blocks (ha2_k/ha3_k
+      for women, hb2_k/hb3_k for men) joined back to PR via household roster slot.
+    - occupation: only available in BDIR81 (women's IR). Sample reduces to women.
+(c) Outcome (HTN) is partially constructable from BDPR81 wbp1-wbp3 + mbp1-mbp3.
+    BP medication and glucose for diabetic confounder need a deeper file search.
+
+BDHS 2022 IR behavioral variables (tobacco/alcohol) — non-missing counts:
+  (none had any non-missing values; all v463/v485 columns declared but empty)
+
+Saved: outputs/phase8a_audit.rds

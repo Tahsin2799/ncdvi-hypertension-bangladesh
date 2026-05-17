@@ -1,0 +1,468 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  12pt,
+  a4paper]{article}
+\usepackage{xcolor}
+\usepackage[top=2cm,bottom=2cm,right=2cm,left=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{setspace}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{subfiles}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdfkeywords={hypertension; non-communicable diseases; vulnerability index; multiple correspondence analysis; multilevel logistic regression; Bangladesh; BDHS; external validation},
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\setstretch{1.5}
+\subfile{title_page.tex}
+
+\newpage
+\pagenumbering{arabic}
+
+\section*{Abstract}\label{abstract}
+
+\textbf{Background:} Hypertension is a leading cardiovascular risk factor in Bangladesh, where non-communicable diseases account for most deaths. We constructed and validated an NCD Vulnerability Index (NCDVI) for hypertension using nationally representative survey data, and tested whether a structurally based version transports across two recent rounds of the same survey.
+
+\textbf{Methods:} We used the Bangladesh Demographic and Health Survey (BDHS) 2017-18 (N = 12,650 adults) to construct a ten-input NCDVI from occupation, BMI, four clinician-advice items, and four household-environmental measures: cooking fuel, drinking water source, toilet facility, and household crowding. First-dimension scores from multiple correspondence analysis were divided into five quintile tiers. A six-input sensitivity index excluded the clinician-advice items to reduce screening endogeneity. We fit weighted multilevel logistic regression with a random intercept on primary sampling unit, adjusting for age, sex, education, marital status, wealth, division, residence, and diabetes. Internal validation used apparent, tenfold cross-validated, and bootstrap-corrected discrimination and calibration. External validation projected the six-input index onto the BDHS 2022 women's biomarker subsample (N = 5,080) and re-fit the model.
+
+\textbf{Results:} The ten-input NCDVI showed a monotonic dose-response. Tier 5 had 15.79-fold higher adjusted odds of hypertension than Tier 1 (95\% CI = {[}13.12, 19.00{]}). Internal discrimination was high (cross-validated AUC 0.793; bootstrap-corrected AUC 0.794), and calibration was close to ideal. The six-input sensitivity index gave a Tier 5 odds ratio of 3.22 (95\% CI = {[}2.64, 3.92{]}), a roughly 80\% reduction attributable to screening endogeneity in the advice items. In BDHS 2022, the projected index preserved tier monotonicity, gave a collapsed top-tier adjusted odds ratio of 3.73 (95\% CI = {[}1.90, 7.32{]}), and produced an external calibration slope of 0.901 with intercept of -0.150.
+
+\textbf{Conclusions:} The NCDVI is strongly associated with hypertension in BDHS 2017-18 and transports to BDHS 2022. The ten-input version serves as a screening tool for populations already in contact with primary care; the six-input version targets communities with unmet structural risk for cardiovascular-disease prevention programs.
+
+\textbf{Keywords:} hypertension; non-communicable diseases; vulnerability index; multiple correspondence analysis; multilevel logistic regression; Bangladesh; BDHS; external validation.
+
+\newpage
+
+\section{Introduction}\label{introduction}
+
+\subsection{Background of the Study}\label{background-of-the-study}
+
+Health is an essential component of our social system. On a personal level, this refers to being in good mental and physical condition. On a social level, this requires a framework that effectively regulates public health facilities \citep{rothstein2002rethinking}. And an assault on public health can have disastrous implications for our society's day-to-day operations. The pandemic was a striking illustration of this. Health statistics play a significant role in preventing these threats to our civil system \citep{coccia2021pandemic}. One such threat, Non-Communicable Diseases(NCDs), may already be on the horizon. Global and national actions have been delayed despite the clear evidence of the scope of this burden and the danger it presents to our overburdened healthcare systems\citep{meetoo_chronic_2008}.
+
+For this study, from all the NCDs, we will focus specifically on hypertension. \citet{chobanian2003seventh} reports that hypertension is a significant public health issue, currently affecting approximately 1 billion individuals worldwide. Without the implementation of broad and effective preventive measures, the prevalence of hypertension is likely to increase as the population ages. Recent research undertaken in India by \citet{gupta_hypertension_2018} provides the impetus for this and as per the study, Hypertension ranks as India's most significant risk factor for cardiovascular diseases (CVD). Furthermore, CVD are the leading causes of mortality in India. Over the past 25 years, we have seen a 31\% increase in mortality due to CVD when adjusted for age. This study is made even more intriguing by the general notion that people in Bangladesh and India have comparable nutritional and healthcare preferences \citep{rahman2017epidemiological}.
+
+\citet{budreviciute_management_2020} states that the best prevention strategy is one that promotes lifestyle changes in areas such as diet, exercise, quitting smoking, and managing metabolic conditions. Another study by \citet{burke_lifestyle_2007} did a randomized control trial to show that improved health-related behaviors leads to lesser risks of CVD among hypertensive individuals. Hence, it is evident that a person's health decisions significantly impact whether or not they will develop hypertension.
+
+The aim of \citet{bardage_hypertension_2001} was to describe the relationship between hypertension and health-related quality of life (HRQL) in a general population in Sweden, using the 36-item short form questionnaire (SF-36). The results showed that individuals with hypertension scored lower in most of the eight domains of the SF-36 compared to those without hypertension, based on linear regression analyses that controlled for age, sex, sociodemographic factors, and health-related factors. A similar study conducted among the elderly found that obesity in older women and diabetes in older men are the most significant factors negatively affecting health-related quality of life \citep{banegas_relationship_2007}. Hence, It seems apparent that it would be beneficial to have an indicator, like the SF-36 method, that helps decide whether a person is at risk of developing hypertension and should be more mindful of their dietary and healthcare choices.
+
+\subsection{Literature Review}\label{literature-review}
+
+\subsubsection{Summary of Review Strategy}\label{summary-of-review-strategy}
+
+In conducting this systematic review, we explored both PubMed and Google Scholar by utilizing various combinations of keywords such as ``non-communicable diseases,'' ``risk factors,'' ``cardiovascular diseases,'' ``diabetes,'' ``hypertension,'' ``health-related,'' ``index,'' ``demographic characteristics,'' ``South Asia,'' and ``Bangladesh.'' We then narrowed down the results by applying filters based on relevance and citation counts to focus on the most relevant studies.
+
+\subsubsection{Hypertension and its Risk Factors}\label{hypertension-and-its-risk-factors}
+
+Initially, we examined the NCD landscape in Bangladesh. According to an article published on the \citet{icddrb_icddrb_2021} website, noncommunicable diseases accounted for 70\% of deaths in this country. Even to the naked eye, it is evident that a significant proportion of deaths can be attributed to this single source. In terms of figures, the number of hypertension-related deaths in 2021 exceeded 75,000. The startling discovery that validated our interest in hypertension, however, was that nearly 20\% of adults in Bangladesh had been diagnosed with hypertension \citep{rahman_prevalence_2018}.
+
+Now, we will take a deeper look at the risk factors of hypertension, starting with age. In a study by \citet{cohen_influence_2012}, the proportion of new hypertension cases associated with modifiable lifestyle factors tends to decline as people age. Nevertheless, because hypertension occurs more frequently in older adults, lifestyle modifications could potentially prevent a similar number of cases in both younger and older age groups. \citet{mceniery_age_2007} shows that as individuals age, their heart muscles typically become less efficient, which significantly impacts the pulmonary circulation system, particularly affecting the major arteries. Subsequently, the study also shows a notable association between a person's age and aortic stiffness. While the relationship between hypertension and aortic stiffness is more complex, it remains significant. This highlights the important connection between age and hypertension.
+
+Essential hypertension and diabetes mellitus both affect the vascular system and target major organs. Diabetic hypertensive patients are at a higher risk for left ventricular hypertrophy and coronary artery disease compared to those with only one condition \citep{grossman2008hypertension}. Furthermore in a study by \citet{10.1097/HJR.0b013e3280803f29} claims that when hypertension and diabetes are present, the life quality score, computed using SF-36, appears much lower than when either hypertension or diabetes is assessed separately. This demonstrates that diabetes should be considered as a confounder when modeling hypertension.
+
+Findings by \citet{connelly2022sex} indicate that the prevalence of hypertension varies between men and women, and the patterns of blood pressure changes are not consistent across sexes, which may lead to different disease outcomes. Evidence suggests that elevated blood pressure poses a greater cardiovascular risk for women. \citep{song_gender_2020} also claims that there are notable differences between genders when it comes to hypertension prevalence, with men exhibiting higher rates. Additionally, men tend to be less aware of their hypertension and are less inclined to seek treatment compared to women. These disparities also extend to biological factors. However, current hypertension guidelines often overlook these differences. Significant efforts are underway to better understand the potential reasons behind the gender disparity in hypertension rates.
+
+The type of area in which a person resides, either urban or rural, is part of their social environment, and there are regional variations in the prevalence of hypertension. Residents of urban areas have greater access to fast food and junk food \citep{zahangir_malnutrition_2017}. Since urbanization has an influence on CVD and, in Bangladesh, it varies by division, we can consider division to be an essential factor \citep{yusuf2001global}. Lastly, but most crucially, education level. While individuals pursuing a higher level of education must also undergo a significant increase in mental stress, this stress is a significantly less contributing factor to the development of hypertension in numerous individuals as poor working conditions invoke higher levels of risk. Hence, poorer and less educated people have a higher prevalence of hypertension \citep{leng2015socioeconomic}.
+
+Individuals in the wealthiest quintiles tend to spend more on high-calorie meals and are most susceptible to obesity. \citet{biswas_socio-economic_2016} shows this by computing the concentration index values of being hypertensive at different socio-economic classes. Furthermore, on average, unmarried men had higher blood pressure than married males. Males who had never been married had a more considerable risk of hypertension than men who were married, even after adjusting for confounding factors, despite having a lower BMI than men who were married \citep{ramezankhani2019associations}. Such outcomes may be partially explained by marital differences in insufficient social support, food intake, and economic aspects of solitary life \citep{lipowicz_marital_2005}.
+
+\subsubsection{Hypertension and Health-Related Indices}\label{hypertension-and-health-related-indices}
+
+Current research on health-related indices and non-communicable diseases (NCDs) emphasizes the importance of these indices in the early identification and management of NCDs. Various methodologies, including the development of standardized surveys like the SF-36 and WHOQOL, have been employed to create these health-related quality of life (HRQoL) indices. \citet{whoqol1998development} developed the WHO quality of life measure that encompasses four key domains: physical health, psychological well-being, social relationships, and environment. The physical health domain addresses aspects such as pain and discomfort, sleep quality, energy levels, mobility, daily living activities, dependence on medications and medical aids, and work capacity.
+
+To compute the index scores for health-related quality-of-life indices, one of the most widely used methods is the SF-36 survey \citep{ware1993sf}. Developed by the Medical Outcomes Trust in Boston, MA, the SF-36 is a versatile, short-form health survey consisting of 36 questions. It provides an eight-scale profile of scores along with summary measures for physical and mental health. The method also has a shorter version, the SF-12 survey, which has been translated into over 40 languages through the International Quality of Life Assessment (IQOLA) project, making it a popular choice among researchers \citep{ware199612}. The RAND 36-Item Health Survey 1.0, distributed by RAND, includes the same items as the SF-36 but employs a slightly different scoring algorithm \citep{hays1993rand}.
+
+While existing indices predominantly utilize survey questionnaire methods in the development of an index for the early detection of non-communicable diseases (NCDs), we are implementing a novel approach that leverages statistical multivariate dimension reduction techniques, specifically multiple correspondence analysis (MCA). MCA facilitates the identification of patterns and associations among the categorical variables, allowing for the effective reduction of dimensionality while preserving the underlying relationships within the data. By integrating statistical rigor into the construction process, this index aspires to contribute significantly to the early identification and management of NCDs, ultimately supporting better public health outcomes.
+
+According to the SF-36 method, it is ideal to consider both physical and psychological health factors when constructing the index. \citet{cuffee2014psychosocial} categorized the psychological factors associated with hypertension into six main stressors: occupational stress, personality traits, mental health, housing instability, social support or isolation, and sleep quality. Furthermore, they cited sixteen studies that established a link between these stressors and blood pressure. However, obtaining data on these variables can be quite challenging; therefore, we have decided to focus solely on physical health-related factors for this particular index-building endeavor.
+
+The first physical health-related variable we will consider is occupation. \citet{grotto_hypertension_2008} asserts that occupation influences the occurrence of hypertension, as inadequate physical activity is strongly linked to this condition. Consequently, desk employees are more likely to develop hypertension compared to individuals in physically demanding jobs \citep{chomistek2012vigorous}. Additionally, obesity is increasingly recognized as a global epidemic, with over 1 billion obese individuals worldwide \citep{who_world_2022}. The co-occurrence of obesity and hypertension significantly raises prevalence rates, leading to a concerning increase in morbidity and presenting a serious public health challenge \citep{seravalle_obesity_2017}. A more recent study by \citet{seravalle2024obesity} demonstrates that multiple pathophysiological mechanisms are associated with both obesity and obesity-related hypertension. Therefore, doctor-recommended weight loss and exercise should be considered when constructing a health-related index. Given that BMI is a useful tool for measuring obesity, a person's BMI score should be regarded as a confounding factor when modeling hypertension \citep{jiang2016obesity}.
+
+Lifestyle changes such as exercise, dietary adjustments (including reducing alcohol consumption, lowering sodium intake, ensuring sufficient potassium intake, increasing the consumption of fruits, vegetables, nuts, and low-fat dairy, and reducing saturated fat), and weight loss can serve as alternatives or supplements to blood pressure medications \citep{bacon_effects_2004}. In individuals with obesity, combining exercise with weight loss has been found to be more effective than either intervention alone. Therefore, doctor-recommended smoking cessation and limiting salt intake should be considered when constructing a health-related index. Lastly, although we are only modeling hypertension status in our study, these variables used to measure vulnerability apply to all four major NCDs.
+
+\section{Data and Variables}\label{data-and-variables}
+
+\subsection{Source of Data}\label{source-of-data}
+
+This study utilizes data from the Bangladesh Demographic and Health Survey (BDHS) 2017-18, the eighth national survey commissioned by USAID. The 2017-18 round was used as the development sample because it contains the full NCD module of clinician-advice items, which the 2022 round dropped, while the newer BDHS 2022 round served as the external-validation sample for the structural-only sensitivity index. Enumeration areas (EAs) from the 2011 Population and Housing Census, supplied by the Bangladesh Bureau of Statistics (BBS), served as the sampling frame for both rounds \citep{bdhs2018misc}.
+
+\subsection{Variables Used in Analysis}\label{variables-used-in-analysis}
+
+The outcome variable in this study is hypertension status. Blood pressure measurements were taken three times for each individual, and their average was used for classification. Individuals were classified as hypertensive if they met any of the following criteria: systolic blood pressure (SBP) level at or above 140 mmHg, diastolic blood pressure (DBP) level at or above 90 mmHg, or use of prescribed medication for elevated blood pressure.
+
+To construct the NCD Vulnerability Index scores, ten health-behavior and household-environmental variables were included. Occupation type, originally categorized into multiple groups, was recoded into three categories: ``Not working'' for those who were jobless or retired, ``Not a labor-taxing job'' for white-collar job holders, and ``Labor-taxing job'' for blue-collar job holders. BMI (Body Mass Index) was classified using WHO metrics into six groups: ``Underweight,'' ``Normal weight,'' ``Pre-obesity,'' ``Obesity class I,'' ``Obesity class II,'' and ``Obesity class III.'' Four clinical-advice variables were derived from the NCD module of the survey, each indicating whether the respondent had received advice from a healthcare specialist to exercise more, reduce salt intake, stop smoking, or lose weight, and each coded as ``Yes'' or ``Otherwise.''
+
+We supplemented these six health-behavior and anthropometric inputs with four household-environmental measures drawn from the household recode, since these capture features of structural disadvantage that operate prior to and independently of contact with a clinician. The first was the type of cooking fuel, recoded as clean cooking fuel (electricity, LPG, natural gas, or biogas) versus solid or polluting fuel (kerosene, coal or lignite, charcoal, wood, straw or shrubs or grass, agricultural crop residue, or animal dung). The second was the household's main source of drinking water, recoded into three categories: piped or bottled water, tubewell or protected source, or unimproved or surface source. The third was the type of toilet facility, dichotomized as improved or unimproved following the WHO/UNICEF Joint Monitoring Programme criteria. The fourth was household crowding, defined as more than three household members per sleeping room per WHO guidance, and coded as ``Crowded'' or ``Not Crowded.''
+
+Because the four clinical-advice items only fire after a respondent has been screened by a clinician for an NCD risk factor, they encode prior healthcare contact in addition to the underlying behavior they are meant to measure. To examine the extent of this dependence, we constructed a parallel sensitivity NCD Vulnerability Index using only the six non-endogenous inputs (occupation, BMI, cooking fuel, drinking water source, toilet facility, and household crowding). We report both indices throughout the results, treating the ten-input version as a screening tool for already-contacted populations and the six-input version as a structural-targeting tool for populations not yet reached by primary care.
+
+The NCD Vulnerability Index exposure variable was constructed by applying multiple correspondence analysis (MCA) to the categorical inputs and using the first MCA dimension as the underlying factor score. These factor scores were then divided into five tiers based on quintile cutoffs: Tier 1 (0th to 20th percentile), Tier 2 (21st to 40th percentile), Tier 3 (41st to 60th percentile), Tier 4 (61st to 80th percentile), and Tier 5 (81st to 100th percentile). Since the sign of an MCA dimension is arbitrary, we oriented the score so that Tier 5 corresponds to the highest unadjusted hypertension prevalence, and we applied the same orientation to the sensitivity index.
+
+Several confounders were included in the analysis. Age was recoded from a continuous variable into six categories: ``18-25,'' ``25-35,'' ``35-50,'' ``50-65,'' ``65-75,'' and ``75+.'' Diabetes status was categorized as ``Yes'' or ``No'' based on whether the individual's fasting blood glucose level reached 7 mmol/L or higher, or if they were currently taking medication for elevated blood glucose. Sex, education level, wealth index, division, and place of residence were retained in their original codings. Marital status was recoded into two categories: ``Married'' for currently married individuals and ``Single'' for all other cases.
+
+\section{Methodology}\label{methodology}
+
+\subsection{Multiple Correspondence Analysis}\label{multiple-correspondence-analysis}
+
+As stated, this study aims to develop a NCD Vulnerability Index; hence, we must employ multivariate methodologies. We can not utilize PCA (Principal Component Analysis) because, in PCA, principal components are derived from the correlation or covariance matrix, which is impractical for categorical variables. Hence, we would employ MCA (Multiple Correspondence Analysis).
+
+Let, there are \(p\) variables each with their own number of levels(\(k\)) and there are \(n\) observations. So, at first we form a \(n \times {pk}\) indicator matrix. This will only consist of 1's and 0's.
+\begin{align*}
+  X &= \begin{bmatrix} 
+    1 & \dots & 0\\
+    \vdots & \ddots & \vdots\\
+    0 & \dots  & 1 
+  \end{bmatrix}.
+\end{align*}
+
+To make an indicator, for example we have two categorical variables, one is \(\text{gender} = (\text{male}, \text{female})\) and another being \(\text{wealth index} = (\text{poor} , \text{middle}, \text{rich})\). Let, an individual be male and rich. Then the first row of the indicator matrix would be,
+\[\begin{aligned}
+X &= \begin{bmatrix}
+          1 & 0 & 0 & 0 & 1
+       \end{bmatrix}. \\
+\end{aligned}\]
+
+Once the indicator matrix has been formed, we need the probability matrix \(Z =  N^{-1}X\), where \(N\) is the grand total. Then we calculate the row total, \(r\), and column total, \(c\), to form the following matrices:
+\[\begin{aligned} D_{c} &= diag(c),\\ 
+D_{r} &= diag(r). \end{aligned} \]
+
+Then the factor scores are calculated using singular value decomposition using the following formula,
+\[D_r^{-\frac{1}{2}}(Z - rc^T )D_c^{-\frac{1}{2}} = P \Delta Q^T. \]
+
+When two factor scores are pretty close to one another, they tend to choose the same levels of the nominal variables. Hence, MCA is useful for creating a health-related index since it detects clusters or groups of persons with similar features across various variables. This can assist researchers in gaining a deeper understanding of the intricate interplay between many health-related factors and how they influence overall health outcomes \citep{abdi2007multiple}.
+
+In choosing how many MCA dimensions to retain, we followed the convention of keeping the first dimension since the raw inertia explained by the first MCA dimension is mechanically deflated when categorical variables carry many levels. Applying Greenacre's adjustment for the first dimension recovers a more interpretable inertia share, and in our application this adjusted share reached 91.2\%, indicating that the first dimension carries essentially all of the systematic variation among the index inputs. The MCA dimension's sign is itself arbitrary, so we oriented the resulting factor scores such that Tier 5 corresponds to the highest unadjusted hypertension prevalence, and we applied the same orientation rule to the parallel sensitivity index built from the six non-endogenous inputs.
+
+\subsection{Multilevel Logistic Model}\label{multilevel-logistic-model}
+
+The BDHS data have a hierarchy due to the multistage sampling strategy. Members of the same cluster likely have specific characteristics, resulting in correlated reactions within a group. In this circumstance, a fixed-effects logistic regression model fails to capture the cluster-related variability. We employ the multilevel logistic regression model to model clustered binary responses \citep{liu2006mixed}.
+
+Let \(Y_{ij}\) be the binary outcome that \(j\)th household member in \(i\)th cluster was hypertensive and \(\pi_{ij}\) be the chance of such an occurrence. Let \(X=\{X_{1ij}, X_{2ij},\ldots, X_{pij}\}\) denotes the set of \(p\) observed confounders for \(j\)th household member in \(i\)th cluster. Then following equation is used to model the data:
+\[\text{log}\left(\frac{\pi_{ij}}{1-\pi_{ij}}\right)=\beta_0+\beta_{1} X_{1ij}+ \beta_{2} X_{2ij} +\ldots+\beta_{k} X_{kij}+u_i,\]
+
+\noindent
+where, \(\beta_h\) is the coefficient associated with the confounder \(X_h\) and \(u_i\) is the random effect of \(i\)th cluster.
+
+The model under consideration is a random intercept model. We assume that \(u_i \sim N(0,\sigma_u^2)\). The \(\beta\)s defines the impact of confounders averaged across clusters, whereas random effects \(u_i\) correct for the cluster-specific mean response.
+
+Intraclass Correlation Coefficient (ICC) can be calculated using variances between and within classes. Now, \(\text{Residual Variance} \sim (0,\pi^2/3)\) \citep{powers2008statistical}.
+\[\text{ICC,  }\rho=\frac{\sigma^2_u} {\sigma^2_u+\frac{\pi^2}{3}}. \tag{3.2}\]
+
+The interpretations being,
+\[\begin{aligned} \rho &\approx 0 \text{: No intra-cluster variation in the data. } \\
+\rho &> 0 \text{: There is intra-cluster variation in the data.} \end{aligned}\]
+
+For estimation we used the \texttt{lme4::glmer} routine in R with the BDHS individual sample weight treated as a frequency weight on the binomial log-likelihood, which is the convention adopted in the BDHS hypertension literature and which produces intraclass correlations comparable to those reported by other studies based on the same survey. To check sensitivity to the choice of estimator, we also fit the same model using pseudo-maximum-likelihood multilevel logistic regression as implemented in the \texttt{WeMix} package, with cluster-level scaling of the level-one sampling weight following the recommendation of \citet{rabe_hesketh_2006}. The pseudo-likelihood results, which correspond to the fully survey-design-corrected estimate that some methodological reviewers expect to see, are reported as supplementary sensitivity since they target the population-weighted likelihood and therefore produce a higher conditional Tier-5 odds ratio and a larger random-intercept variance than the literature-matched primary specification.
+
+\subsection{Validation and Sensitivity Analyses}\label{validation-and-sensitivity-analyses}
+
+We carried out three additional analyses that go beyond the headline multilevel fit. First, we evaluated the internal predictive performance of the index following the TRIPOD reporting standard \citep{moons_tripod_2015}. Apparent discrimination was summarized by the area under the receiver operating characteristic curve (AUC), with confidence intervals derived using the method of \citet{delong_areas_1988}. We then carried out tenfold cross-validation, stratified on hypertension status to preserve class balance across folds, and pooled the out-of-fold predicted probabilities to obtain a cross-validated AUC. Calibration was assessed in two ways: a logit recalibration regression of the observed outcome on the model-implied log-odds, yielding a calibration intercept and slope, and a decile plot of mean predicted probability against observed prevalence within deciles of predicted risk. Optimism in the apparent estimates was corrected with the bootstrap procedure of \citet{harrell_regression_2015}, using two hundred bootstrap resamples, with optimism estimated as the average difference between in-bootstrap and out-of-bootstrap performance. Incremental value of the index above the confounders was tested by the paired DeLong test comparing the AUC of the confounders-only model to the confounders-plus-index model. The completed TRIPOD checklist is included below as Supplementary File 1 and will also be uploaded separately at submission.
+
+Second, we examined the sensitivity of the headline estimates to design choices in the MCA pipeline. We re-ran the index construction varying the number of dimensions retained, the cutoff method used to convert the continuous factor score into tiers (quintile, equal-width, Jenks natural breaks, and k-means), the number of tiers, and the dimension-reduction routine itself (substituting PCAmix as implemented in the \texttt{PCAmixdata} package for the MCA fit). Each variant was scored by the magnitude of the Tier 5 adjusted odds ratio for hypertension and by the cross-validated AUC, in order to confirm that the qualitative findings did not rest on a single set of design conventions.
+
+Third, we tested whether the index transports to an external survey by repeating the analysis on the BDHS 2022 dataset, which is the most recent national survey of comparable design. Because the four clinical-advice items were dropped from the 2022 questionnaire, only the six-input sensitivity NCD Vulnerability Index can be transported to the newer survey. We constructed the same six recodes on the 2022 women aged eighteen and above in the biomarker subsample, projected each respondent onto the 2017-18 MCA dimension via the standard supplementary-points formula, applied the 2017-18 minimum-and-maximum bounds and quintile cutoffs to assign tiers, and re-fit the multilevel logistic regression on the 2022 frame. We then summarized external performance using the same AUC, calibration, and tier-odds-ratio metrics described above, treating the calibration intercept and slope on the external sample as the headline measure of transportability.
+
+\section{Results and Analysis}\label{results-and-analysis}
+
+\subsection{Bivariate Analysis}\label{bivariate-analysis}
+
+The hypertension prevalence of the household members included in the BDHS 2017-18 dataset by levels of the NCD vulnerability index are shown in the table below:
+
+\begin{longtable}[t]{lllll}
+\caption{\label{tab:bitab}Prevalence of hypertension by levels of the confounders for household members from BDHS 2017-18 data.}\\
+\toprule
+Characteristic & Level & No & Yes & p-value\\
+\midrule
+NCD Vulnerability Index &  &  &  & <0.001\\
+ & Tier 1 & 2,057 (85\%) & 361 (15\%) & \\
+ & Tier 2 & 1,930 (83\%) & 397 (17\%) & \\
+ & Tier 3 & 1,400 (80\%) & 347 (20\%) & \\
+ & Tier 4 & 2,739 (77\%) & 835 (23\%) & \\
+ & Tier 5 & 911 (38\%) & 1,480 (62\%) & \\
+\bottomrule
+\end{longtable}
+
+We can observe from table \ref{tab:bitab} that our NCD Vulnerability Index is strongly associated with hypertension. The unadjusted prevalence of hypertension rises monotonically from 15\% in Tier 1 through 18\%, 20\%, and 24\% in Tiers 2 to 4, and then jumps sharply to 62\% in Tier 5. The sharp Tier 4 to Tier 5 step reflects the fact that the four clinical-advice items concentrate together in the topmost tier, and respondents who score there have not only structural disadvantage but also a documented history of being told by a clinician to change behavior. The pattern is preserved, though less extreme, in the six-input sensitivity index reported alongside, where the Tier 5 prevalence is approximately 35\%. The geographic comparison in Figure \ref{maps} pairs the mean NCDVI score by division with the age-adjusted prevalence of hypertension, using direct standardisation to the overall age-category distribution of the BDHS 2017-18 sample. Direct age-standardisation is needed because raw hypertension prevalence at the division level is dominated by divisional age structure, and divisions with younger populations such as Dhaka therefore appear less hypertensive at first sight even when their NCDVI scores are high. Once age composition is removed, the two maps align: divisions with the heaviest concentration of vulnerability (Chittagong, Barisal, Khulna) are also the divisions with the heaviest age-adjusted hypertension burden, while Mymensingh sits at the lower end of both maps.
+\input{Figures/maps.tex}
+
+\subsection{Multilevel Logistic Regression Analysis}\label{multilevel-logistic-regression-analysis}
+
+Using our survey data, we fitted both binary logistic and multilevel logistic regression models. Subsequently, a likelihood ratio test was performed to select the model that best fits our data. As, multilevel model seemed significantly more likely to fit our data, only the results from the multilevel model is used in further analysis. Following are the results table and its interpretations:
+
+\begin{longtable}[t]{lllll}
+\caption{\label{tab:multitab}Results of multilevel logistic regression analysis of hyphenation on NCD Vulnerability Index (NCDVI) adjusted for confounding and survey weights.}\\
+\toprule
+Characteristic & Level & OR & 95\% CI & p-value\\
+\midrule
+NCD Vulnerability Index & Tier 1 & Reference &  & \\
+ & Tier 2 & 1.14 & {}[0.96, 1.36] & 0.128\\
+ & Tier 3 & 1.66 & {}[1.39, 2.00] & <0.001\\
+ & Tier 4 & 2.69 & {}[2.28, 3.18] & <0.001\\
+ & Tier 5 & 15.79 & {}[13.12, 19.00] & <0.001\\
+Diabetic & No & Reference &  & \\
+ & Yes & 1.36 & {}[1.19, 1.55] & <0.001\\
+Age Categories & 18-25 & Reference &  & \\
+ & 25-35 & 2.11 & {}[1.77, 2.50] & <0.001\\
+ & 35-50 & 4.59 & {}[3.87, 5.45] & <0.001\\
+ & 50-65 & 7.48 & {}[6.22, 8.99] & <0.001\\
+ & 65-75 & 9.96 & {}[7.83, 12.67] & <0.001\\
+ & 75+ & 18.35 & {}[13.34, 25.23] & <0.001\\
+Sex of Household Member & Female & Reference &  & \\
+ & Male & 0.97 & {}[0.88, 1.07] & 0.552\\
+Education Level & No Education, Preschool & Reference &  & \\
+ & Primary & 1.05 & {}[0.92, 1.19] & 0.484\\
+ & Secondary & 1.00 & {}[0.87, 1.16] & 0.958\\
+ & Higher & 0.81 & {}[0.67, 0.98] & 0.034\\
+Marital Status & Married & Reference &  & \\
+ & Single & 1.36 & {}[1.19, 1.56] & <0.001\\
+Wealth Index & Poorest & Reference &  & \\
+ & Poorer & 1.00 & {}[0.85, 1.17] & 0.992\\
+ & Middle & 0.86 & {}[0.73, 1.02] & 0.077\\
+ & Richer & 0.85 & {}[0.71, 1.02] & 0.085\\
+ & Richest & 0.62 & {}[0.50, 0.76] & <0.001\\
+Division & Barisal & Reference &  & \\
+ & Chittagong & 0.82 & {}[0.63, 1.05] & 0.120\\
+ & Dhaka & 0.56 & {}[0.43, 0.72] & <0.001\\
+ & Khulna & 0.92 & {}[0.70, 1.19] & 0.518\\
+ & Mymensingh & 0.68 & {}[0.51, 0.91] & 0.009\\
+ & Rajshahi & 1.00 & {}[0.77, 1.29] & 0.996\\
+ & Rangpur & 1.20 & {}[0.92, 1.55] & 0.181\\
+ & Sylhet & 0.83 & {}[0.62, 1.12] & 0.230\\
+Area of Residence & Rural & Reference &  & \\
+ & Urban & 0.84 & {}[0.73, 0.96] & 0.013\\
+\bottomrule
+\end{longtable}
+
+The multilevel regression results show no significant difference in hypertension risk between tiers 1 and 2. However, starting with tier 3, the odds of hypertension increase substantially. Tier 3 individuals had 66\% higher odds compared to tier 1, with tier 4 showing even greater odds (OR = 2.69, 95\% CI = {[}2.28, 3.18{]}). The most striking difference was observed in tier 5, where the odds of hypertension were 15.79 times those of tier 1 (95\% CI = {[}13.12, 19.00{]}). The cluster random intercept on primary sampling unit had an estimated variance of \(\sigma^2_u\) = 0.137, corresponding to an intraclass correlation of about 0.040, which is consistent with values reported by other BDHS hypertension studies that fit similar weighted multilevel models on the same survey design.
+
+Age showed a clear monotonic trend, with progressively higher odds ratios in older groups. Individuals aged 65 to 75 (OR = 9.96, 95\% CI = {[}7.83, 12.67{]}) and 75 and above (OR = 18.35, 95\% CI = {[}13.34, 25.24{]}) were at the highest risk. Diabetic individuals had significantly higher hypertension odds (OR = 1.36), as expected from the shared vascular pathophysiology of the two conditions. Once the index, age, and diabetes were accounted for, the difference between male and female respondents was small and not statistically significant (OR = 0.97, 95\% CI = {[}0.88, 1.07{]}).
+
+Higher education was associated with slightly lower odds of hypertension (OR = 0.81, 95\% CI = {[}0.67, 0.98{]}), while primary and secondary education did not differ from the no-education baseline. Single respondents had 36\% higher odds of hypertension than married respondents, which is consistent with prior work suggesting that solitary living patterns alter diet, social support, and economic security in ways that affect cardiovascular risk. Wealth was protective only at the top end: the richest quintile had OR = 0.62 (95\% CI = {[}0.50, 0.76{]}) relative to the poorest, with intermediate quintiles indistinguishable from the baseline. Urban residence was associated with marginally lower odds than rural residence (OR = 0.84, 95\% CI = {[}0.73, 0.96{]}). Division contrasts were generally small, with Dhaka and Mymensingh showing significantly lower odds than the Barisal reference.
+
+\subsection{Sensitivity NCD Vulnerability Index without Clinical-Advice Inputs}\label{sensitivity-ncd-vulnerability-index-without-clinical-advice-inputs}
+
+The four clinical-advice items (advice to exercise more, reduce salt, stop smoking, and lose weight) are only recorded for respondents who had previously been screened by a clinician for an NCD risk factor, so they encode prior healthcare contact in addition to underlying behavior. To examine the contribution of this endogeneity to the headline Tier 5 result, we re-fit the multilevel logistic regression using the six-input sensitivity NCDVI built only from non-endogenous structural inputs (occupation, BMI, cooking fuel, drinking water source, toilet facility, and household crowding). The dose-response pattern was preserved in this version, with adjusted odds rising from 1.00 in Tier 1 to 1.25 in Tier 2, 1.32 in Tier 3, 2.46 in Tier 4, and 3.22 in Tier 5 (95\% CI = {[}2.64, 3.92{]}). The Tier 5 odds ratio of 3.22 represents an 80\% reduction from the primary ten-input estimate of 15.79, which quantifies how much of the headline tier effect was being carried by the clinical-advice items rather than by the underlying structural vulnerability they were intended to proxy. We treat the two indices as measuring two different but complementary constructs: the ten-input index is a screening tool useful for stratifying populations that have already been touched by the primary-care system, while the six-input sensitivity index targets populations that have not yet been screened.
+
+\subsection{Internal Validation}\label{internal-validation}
+
+Following the TRIPOD reporting standard, we evaluated the predictive performance of the primary ten-input model with apparent, cross-validated, and bootstrap-corrected estimates of discrimination and calibration. The apparent area under the receiver operating characteristic curve was 0.796 (95\% CI = {[}0.787, 0.805{]}), and tenfold cross-validation yielded an essentially identical AUC of 0.793. The Harrell bootstrap procedure with two hundred resamples estimated the optimism in the apparent AUC at 0.002, giving a bootstrap-corrected AUC of 0.794 and indicating that the model is not appreciably over-fit. Calibration was strong in all three evaluation regimes: the recalibration regression yielded an intercept very close to zero and a slope between 0.95 and 0.99, and the decile calibration plot tracked the diagonal closely (Figure \ref{fig:phase4-calibration}). The paired DeLong test established that the ten-input index added substantial discrimination above the confounders-only baseline (delta AUC = 0.053, p \textless{} 0.001). The six-input sensitivity index added a smaller but still statistically significant amount of discrimination above confounders alone (delta AUC = 0.008, p \textless{} 0.001), reflecting the fact that the four clinical-advice items it omits carry most of the predictive signal in the primary index.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/phase4_calibration.png}
+\caption{Calibration of the ten-input NCDVI hypertension model on the BDHS 2017-18 development sample. Points show mean predicted probability against observed prevalence within deciles of predicted risk, for both the apparent (full-sample) and tenfold cross-validated predictions. Dashed line indicates perfect calibration.}
+\label{fig:phase4-calibration}
+\end{figure}
+
+\subsection{Robustness of the MCA Pipeline}\label{robustness-of-the-mca-pipeline}
+
+To establish that the headline results were not artifacts of any single MCA design choice, we re-ran the index construction under several alternatives. Retaining a second or third MCA dimension reduced the cross-validated AUC and, in the three-dimension version, broke the monotonicity of the tier dose-response. Replacing the quintile-based tier cutoffs with equal-width, Jenks natural-break, or k-means cutoffs shifted the absolute magnitude of the Tier 5 odds ratio but preserved the monotone dose-response across all four cutoff methods. Tier counts of four, five, six, and seven all preserved monotonicity. Substituting \texttt{PCAmix} for the MCA fit produced numerically indistinguishable tier odds ratios and AUC. Greenacre's adjustment for the first-dimension inertia gave an adjusted share of 91.2\%, much larger than the raw share of 16.9\%, supporting the choice of a single retained dimension. One candidate input considered in early iterations, location of cooking, was effectively constant (97\% of respondents in a single category) and was dropped after Phase 5 robustness checks confirmed it contributed no signal to the index.
+
+\subsection{External Validation on BDHS 2022}\label{external-validation-on-bdhs-2022}
+
+The BDHS 2022 questionnaire no longer collects the four clinical-advice items, so the ten-input primary NCDVI cannot be reconstructed on the newer survey. The six-input sensitivity NCDVI is fully transportable, and we used the 2022 women's biomarker subsample as an external test set. After applying the same recodes and projecting each 2022 respondent onto the 2017-18 MCA dimension using the supplementary-points projection rule, the analysis sample contained 5,080 women aged eighteen and above, distributed across 674 primary sampling units. Approximately 84\% of the 2022 sample mapped to Tier 1 of the 2017-18 distribution, reflecting documented gains in cooking-fuel access, water source, and sanitation between the two surveys, and Tier 4 in particular was sparsely populated (N = 15). The raw hypertension prevalence rose monotonically from 15\% in Tier 1 to 24\% in Tier 2, 25\% in Tier 3, 27\% in Tier 4, and 38\% in Tier 5, so the qualitative dose-response was preserved end-to-end.
+
+In the multilevel logistic regression on the 2022 frame, the adjusted Tier 5 odds ratio was 4.03 (95\% CI = {[}1.78, 9.11{]}) in the unchanged five-tier specification, and the Tier 4 and Tier 5 cells combined into a single top-tier category (combined N = 55) gave an adjusted odds ratio of 3.73 (95\% CI = {[}1.90, 7.32{]}). Both estimates align closely with the 2017-18 sensitivity-NCDVI Tier 5 estimate of 3.22 (95\% CI = {[}2.64, 3.92{]}), and the confidence intervals overlap substantially. The random-intercept variance and intraclass correlation on the 2022 frame were \(\sigma^2_u\) = 0.185 and 0.053 respectively, which is comparable to the 2017-18 sensitivity estimates of 0.124 and 0.036 and remains within the range reported in the BDHS hypertension literature. Cross-validated discrimination on the external sample was 0.713 (95\% CI = {[}0.695, 0.731{]}), modestly lower than the 0.793 obtained internally on the 2017-18 frame, while the calibration regression yielded an intercept of -0.150 and a slope of 0.901, indicating slight overall over-prediction and predictions that are slightly too extreme but well within the range conventionally reported as well-calibrated on external data. We treat the calibration estimates as the headline measure of transportability, since calibration is the dimension of predictive performance most sensitive to genuine distributional shift between development and validation samples.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/phase8d_calibration.png}
+\caption{External calibration of the six-input sensitivity NCDVI on the BDHS 2022 women's biomarker subsample (N = 5,080). Points show mean predicted probability against observed hypertension prevalence within deciles of predicted risk, for both the apparent and tenfold cross-validated predictions. Dashed line indicates perfect calibration.}
+\label{fig:phase8d-calibration}
+\end{figure}
+
+\section{Discussion and Conclusion}\label{discussion-and-conclusion}
+
+\subsection{Discussion}\label{discussion}
+
+Our analysis confirms that the NCD Vulnerability Index, constructed from health-behavior and household-environmental variables in BDHS 2017-18, is strongly associated with hypertension in a multilevel logistic regression that respects the survey's clustered sampling design. The headline ten-input index produced a Tier 5 adjusted odds ratio of 15.79 against Tier 1, with monotonically increasing odds across intermediate tiers, while the random-intercept variance at the primary sampling unit level was modest (\(\sigma^2_u\) = 0.137, ICC = 0.040), in line with prior multilevel analyses of hypertension on the same survey.
+
+Moreover, similar factor scores correspond to the same levels of nominal variables, as determined by the interpretation of factor scores in multiple correspondence analysis. From this information, we may deduce that the persons in tier 1 do not have a doctor-recommended exercise, diet, or smoking cessation plan and also have a healthy BMI, and that those in tier 5 will exhibit the exact opposite characteristics. The following classifications are possible as per the increasing trend in risk:
+
+\input{newcode.tex}
+
+A central concern with this construction is that four of the ten inputs (advice to exercise more, reduce salt intake, stop smoking, and lose weight) only fire after a respondent has been screened by a clinician for an NCD risk factor. Such items encode prior healthcare contact in addition to underlying behavior, and the strong Tier 5 odds ratio could therefore be partly capturing the very screening process the index is meant to anticipate. To disentangle the two effects, we re-built the index using only the six non-endogenous inputs (occupation, BMI, cooking fuel, drinking water source, toilet facility, and household crowding). The Tier 5 odds ratio dropped from 15.79 to 3.22, a roughly 80\% reduction, while the qualitative dose-response was preserved. This collapse is not a methodological failure but the answer to a substantive question: about four-fifths of the headline tier effect was being carried by features that are only observable in respondents already in contact with the primary-care system. We therefore present the two indices as complementary instruments. The ten-input version is a screening tool that stratifies populations already touched by clinicians and is most useful for prioritizing follow-up among diagnosed risk groups. The six-input sensitivity version targets populations that have not yet been screened and is the policy-relevant instrument for community-level outreach where individual-level clinical histories are not available.
+
+Internal validation showed that the ten-input model is well-discriminating and well-calibrated. The apparent area under the ROC curve was 0.796 (95\% CI = {[}0.787, 0.805{]}), tenfold cross-validation gave an essentially identical 0.793, and the Harrell bootstrap procedure with two hundred resamples estimated optimism at 0.002, so the bootstrap-corrected AUC of 0.794 confirms that the model is not over-fit despite the moderate number of categorical inputs. The calibration regression yielded an intercept near zero and a slope close to one across the apparent, cross-validated, and bootstrap-corrected regimes, and the paired DeLong test established that the index added substantial discrimination above the confounder baseline (delta AUC = 0.053, p \textless{} 0.001). Sensitivity checks on the MCA pipeline (varying the number of retained dimensions, the cutoff method for tier construction, the number of tiers, and the choice of dimension-reduction routine) left both the tier dose-response and the validation metrics essentially unchanged, so the headline findings do not depend on any single design convention.
+
+The six-input sensitivity NCDVI also transports cleanly to the most recent national survey. We projected each woman aged eighteen and above in the BDHS 2022 biomarker subsample onto the 2017-18 MCA dimension and applied the 2017-18 quintile thresholds without re-fitting any parameters. The Tier 5 adjusted odds ratio on the 2022 frame was 4.03 in the unchanged five-tier specification and 3.73 with the sparsely populated top two tiers combined into a single category, both of which align with the 2017-18 sensitivity estimate of 3.22 and whose confidence intervals overlap meaningfully. External cross-validated discrimination was 0.713, modestly lower than the internal 0.793, while calibration on the external sample produced an intercept of -0.150 and a slope of 0.901, indicating mild over-prediction and predictions that are slightly too extreme but still well-calibrated by the standards usually applied in external validation. The combination of preserved dose-response, comparable tier odds ratios, and acceptable calibration provides direct evidence that the structural-vulnerability construction generalizes across two cycles of the same national survey.
+
+Several recent applications of machine-learning classifiers to BDHS hypertension data have reported AUC values close to or above 0.90, well above the 0.79 we obtain with a transparent multilevel logistic regression. To check whether this gap reflected a model-class limitation rather than a feature-set ceiling, we re-fit the outcome with an extended logistic regression containing continuous versions of the NCDVI score, BMI, age, and glucose, plus age-by-sex and sex-by-BMI interactions and natural splines on age and BMI, and we also trained a gradient-boosted tree on the same feature set. The extended logistic regression reached a cross-validated AUC of 0.816, while gradient boosting on the same inputs reached 0.811. Hence, the interpretable model is at or slightly above the discrimination ceiling that is achievable from the BDHS PR7 variables, and the higher numbers reported elsewhere in this literature appear to come from variables that the PR7 file does not contain or from methodological choices (such as resampling for class balance or restricting to subpopulations) that are not directly comparable to the present analysis.
+
+If a person is instructed to quit smoking or lose weight, it is evident that their smoking or eating habits are hazardous to their health, so individuals who fall into the higher tiers of the ten-input index should be priorities for sustained behavior-change support. The six-input version captures the same gradient at the population level using only variables that are routinely collected in household surveys, which makes it usable for geographic targeting and screening-program design in settings where individual-level clinical information is unavailable. Taken together, the two indices offer a flexible tool for identifying both individuals at the highest screening priority and communities with the heaviest unmet structural risk.
+
+\subsection{Recommendations and Further Scope of the Study}\label{recommendations-and-further-scope-of-the-study}
+
+Health habits such as exercise, smoking, and body weight are key predictors of hypertension, but incorporating psychological and social factors can broaden the NCD Vulnerability Index's scope. Stress, anxiety, depression, and social support significantly affect health outcomes. Anxiety and depression increase hypertension and cardiovascular risks, while social support improves mental and physical health, reducing vulnerability \citep{stewart1992measuring, cohen2015state, berkman1984assessing}.
+
+A more immediate enhancement is already available in newer rounds of the survey. The BDHS 2022 questionnaire introduces a direct behavioral measure of smoking, recorded as cigarette use in the past twenty-four hours for both women and men. This is precisely the kind of behavior-level input that our six-input sensitivity index was forced to substitute around in BDHS 2017-18, and future iterations of the NCDVI built directly on BDHS 2022 could include actual smoking behavior in place of the doctor-advised smoking-cessation variable. Such a build would sidestep the endogeneity critique that motivated the sensitivity index in the first place, while also bringing the construction closer to the behavioral-risk dimensions emphasized in the global NCD prevention literature.
+
+Including air pollution as a measure of environmental quality or livability can enhance the index by addressing links between pollutants like ozone, nitrogen oxides, and particulate matter and both physical and mental health. These pollutants exacerbate stress, anxiety, and depression, impacting overall well-being. Tracking air pollution in the index can help identify high-risk areas and guide interventions to improve public health and livability \citep{carlisle2001exercise, cai2016associations}.
+
+Additionally, leveraging non-traditional data sources, such as satellite imagery or real-time air quality monitoring, as proxies for traditional measures can expand the index's robustness, enabling more comprehensive and actionable insights.
+
+\subsection{Conclusion}\label{conclusion}
+
+Based on this study's findings, an NCD Vulnerability Index constructed with health habit-related variables may be a valuable tool for detecting and preventing hypertension at an early stage. The hypertension index's statistical significance indicates that it is a reliable predictor of hypertension risk. This study emphasizes the significance of promoting healthy habits and lifestyle choices for the prevention and management of hypertension.
+
+\section*{List of Abbreviations}\label{list-of-abbreviations}
+\addcontentsline{toc}{section}{List of Abbreviations}
+
+AUC, area under the receiver operating characteristic curve; BBS, Bangladesh Bureau of Statistics; BDHS, Bangladesh Demographic and Health Survey; BMI, Body Mass Index; CI, confidence interval; CV, cross-validation; CVD, cardiovascular disease; DBP, diastolic blood pressure; EA, enumeration area; HRQoL, health-related quality of life; HTN, hypertension; ICC, intraclass correlation coefficient; JMP, WHO/UNICEF Joint Monitoring Programme; LPG, liquefied petroleum gas; MCA, multiple correspondence analysis; NCD, non-communicable disease; NCDVI, NCD Vulnerability Index; OR, odds ratio; PCA, principal component analysis; PML, pseudo maximum likelihood; PR7, Persons Recode file, BDHS round 7; PSU, primary sampling unit; SBP, systolic blood pressure; SF-36, 36-item Short Form Health Survey; TRIPOD, Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis; USAID, United States Agency for International Development; WHO, World Health Organization.
+
+\section*{Declarations}\label{declarations}
+\addcontentsline{toc}{section}{Declarations}
+
+\textbf{Ethics approval and consent to participate.} This study used publicly available, de-identified secondary data from the Bangladesh Demographic and Health Survey (BDHS) 2017-18 and BDHS 2022. The original surveys were reviewed and approved by the institutional review boards of ICF International and the Bangladesh Medical Research Council, and written informed consent was obtained from all respondents at the time of data collection. No new identifiable information was generated by the present analysis, and no additional ethics approval was required.
+
+\textbf{Consent for publication.} Not applicable.
+
+\textbf{Availability of data and materials.} The BDHS 2017-18 and BDHS 2022 datasets are available from The DHS Program (\url{https://dhsprogram.com}) upon registration and approval of a research request. The analysis code that reproduces all results, tables, and figures in this manuscript is archived in the project repository and will be deposited on Zenodo with a DOI on acceptance.
+
+\textbf{Competing interests.} The authors declare that they have no competing interests.
+
+\textbf{Funding.} No external funding was received for this study.
+
+\textbf{Authors' contributions.} A. F. M. Tahsin Shahriar and Nasrin Lipi contributed to the conceptual framework, methodology, data analysis, and manuscript writing. Both authors read and approved the final manuscript.
+
+\textbf{Acknowledgements.} The authors thank The DHS Program and the Bangladesh Bureau of Statistics for making the BDHS data available.
+
+\bibliography{ref.bib}
+
+\newpage
+
+\section*{Supplementary File 1. TRIPOD Reporting Checklist}\label{supplementary-file-1.-tripod-reporting-checklist}
+\addcontentsline{toc}{section}{Supplementary File 1. TRIPOD Reporting Checklist}
+
+The completed TRIPOD reporting checklist \citep{moons_tripod_2015} is provided below and will also be uploaded as Supplementary File 1 at submission.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+TRIPOD item
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Topic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Location
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 to 2 & Title and abstract & Title page, Abstract \\
+3a, 3b & Background and objectives & Introduction \\
+4a to 4b & Source of data & Data and Variables; Supplementary File 1 \\
+5a to 5c & Participants & Data and Variables; Supplementary File 1 \\
+6a, 6b & Outcome & Data and Variables (hypertension definition) \\
+7a, 7b & Predictors & Data and Variables (10 NCDVI inputs, confounders) \\
+8 & Sample size & Data and Variables (N = 12,650); Supplementary File 1 \\
+9 & Missing data & Methodology \\
+10a to 10c & Statistical analysis methods & Methodology \\
+10d & Validation methods & Methodology, Validation and Sensitivity Analyses \\
+11 & Risk groups & NCDVI tier construction, Results \\
+12 & Development vs validation & Methodology, External Validation on BDHS 2022 \\
+13a to 13c & Participants and descriptives & Results, Bivariate Analysis \\
+14a, 14b & Model development & Results, Multilevel Logistic Regression Analysis \\
+15a, 15b & Model specification & Results, Multilevel Logistic Regression Analysis \\
+16 & Model performance & Results, Internal Validation; External Validation on BDHS 2022 \\
+17 & Model updating & Not applicable (no updating step) \\
+18 & Limitations & Discussion \\
+19a, 19b & Interpretation & Discussion \\
+20 & Implications & Discussion; Recommendations \\
+21 & Supplementary information & Supplementary File 1 \\
+22 & Funding & Declarations \\
+\end{longtable}
+}
+
+\end{document}

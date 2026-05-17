@@ -2,3 +2,16 @@
 .Rhistory
 .RData
 .Ruserdata
+.positai
+/Datasets
+/Data_reports
+/Figures
+/Manuscipt
+
+# --- research-hygiene additions 2026-05-16 ---
+# OS
+.DS_Store
+# R
+Rplots.pdf
+# LaTeX (narrow — broad *.log would clobber outputs/*.log research artifacts)
+/manuscript_BS.log

@@ -1,0 +1,50 @@
+---
+title: " "
+output:
+    bookdown::pdf_book:
+        toc: false    # printed manually later
+        toc_depth: 3
+        citation_package: natbib
+        latex_engine: xelatex
+        extra_dependencies: ["float", "subfiles", "pdfpages"]
+        keep_tex: true
+# lot: true    # list of tables, printed manually later
+# lof: true    # list of figures, printed manually later
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "Manuscript", output_format = "all") })
+documentclass: report
+#bibliography: FALSE
+mainfont: Times New Roman
+fontsize: 12pt
+linestretch: 1.5    # linespacing
+classoption: [a4paper]
+geometry: [top=2cm, bottom=2cm, right=2cm, left=2.5cm]
+# subparagraph: yes    # don't know what this does
+indent: true
+biblio-style: apalike
+colorlinks: true
+linkcolor: black
+citecolor: blue
+# toccolor: red
+# thanks: I thank...
+# abstract: Very long abstract.
+editor_options: 
+    chunk_output_type: console    # this is just a personal preference
+header-includes:
+  - \usepackage{titlesec}
+  - \titleformat{\chapter}{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+  - \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+  - \usepackage{amsmath}
+  - \usepackage{amsfonts}
+  - \usepackage{amssymb}
+---
+
+
+\begin{align*}
+  X &= \begin{bmatrix} 
+    1 & \cdots & 0\\
+    \vdots & \ddots & \vdots\\
+    0 & \cdots & 1 
+  \end{bmatrix}.
+\end{align*}
