@@ -1,0 +1,16 @@
+
+
+processing file: manuscript_BS_v2.Rmd
+1/5           
+2/5 [bitab]   
+3/5           
+4/5 [multitab]
+5/5           
+output file: manuscript_BS_v2.knit.md
+
+/Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/pandoc +RTS -K512m -RTS manuscript_BS_v2.knit.md --to latex --from markdown+autolink_bare_uris+tex_math_single_backslash --output /Users/tahsin/Desktop/BS_project/Manuscript/manuscript_BS_v2.tex --lua-filter /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --number-sections --highlight-style tango --pdf-engine xelatex --natbib --variable graphics --wrap preserve --include-in-header /var/folders/xv/0r7kvcn93jb8qggbhvdrd77h0000gn/T//RtmpqbiPnR/rmarkdown-str4b0b7558df69.html --include-in-header /var/folders/xv/0r7kvcn93jb8qggbhvdrd77h0000gn/T//RtmpqbiPnR/rmarkdown-str4b0b1db3a2af.html --variable tables=yes --standalone -Mhas-frontmatter=false 
+[WARNING] Deprecated: --highlight-style. Use --syntax-highlighting instead.
+Warning: LaTeX Warning: `!h' float specifier changed to `!ht'.
+Warning: LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Output created: Manuscript/manuscript_BS_v2.pdf
