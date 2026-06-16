@@ -342,7 +342,7 @@ Following the TRIPOD reporting standard, we evaluated the predictive performance
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/phase4_calibration.png}
+\includegraphics[width=0.7\textwidth]{Figures/calibration_internal.png}
 \caption{Calibration of the ten-input NCDVI hypertension model on the BDHS 2017-18 development sample. Points show mean predicted probability against observed prevalence within deciles of predicted risk, for both the apparent (full-sample) and tenfold cross-validated predictions. Dashed line indicates perfect calibration.}
 \label{fig:phase4-calibration}
 \end{figure}
@@ -361,7 +361,7 @@ In the multilevel logistic regression on the 2022 frame, the adjusted Tier 5 odd
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/phase8d_calibration.png}
+\includegraphics[width=0.7\textwidth]{Figures/calibration_external.png}
 \caption{External calibration of the six-input sensitivity NCDVI on the BDHS 2022 women's biomarker subsample (N = 5,080). Points show mean predicted probability against observed hypertension prevalence within deciles of predicted risk, for both the apparent and tenfold cross-validated predictions. Dashed line indicates perfect calibration.}
 \label{fig:phase8d-calibration}
 \end{figure}
@@ -372,14 +372,14 @@ Ordering and quantifying risk is one thing; knowing whether it is worth acting o
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/phase9_dca_internal.png}
+\includegraphics[width=0.7\textwidth]{Figures/dca_internal.png}
 \caption{Decision curve analysis on the BDHS 2017-18 development sample. Survey-weighted net benefit, computed from tenfold cross-validated predictions, is plotted against the decision threshold probability for the ten-input and six-input NCDVI models, the confounders-only model, and the treat-all and treat-none reference strategies.}
 \label{fig:dca-internal}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/phase9_dca_external.png}
+\includegraphics[width=0.7\textwidth]{Figures/dca_external.png}
 \caption{Decision curve analysis on the BDHS 2022 external sample (women age 18 and above). Survey-weighted net benefit of the six-input sensitivity NCDVI, computed from tenfold cross-validated predictions, against the confounders-only model and the treat-all and treat-none reference strategies.}
 \label{fig:dca-external}
 \end{figure}
@@ -392,7 +392,7 @@ Our analysis confirms that the NCD Vulnerability Index, constructed from health-
 
 Moreover, similar factor scores correspond to the same levels of nominal variables, as determined by the interpretation of factor scores in multiple correspondence analysis. From this information, we may deduce that the persons in tier 1 do not have a doctor-recommended exercise, diet, or smoking cessation plan and also have a healthy BMI, and that those in tier 5 will exhibit the exact opposite characteristics. The following classifications are possible as per the increasing trend in risk:
 
-\input{newcode.tex}
+\input{tier_classification.tex}
 
 A central concern with this construction is that four of the ten inputs (advice to exercise more, reduce salt intake, stop smoking, and lose weight) only fire after a respondent has been screened by a clinician for an NCD risk factor. Such items encode prior healthcare contact in addition to underlying behavior, and the strong Tier 5 odds ratio could therefore be partly capturing the very screening process the index is meant to anticipate. To disentangle the two effects, we re-built the index using only the six non-endogenous inputs (occupation, BMI, cooking fuel, drinking water source, toilet facility, and household crowding). The Tier 5 odds ratio dropped from 15.79 to 3.22, a roughly 80\% reduction, while the qualitative dose-response was preserved. This collapse is not a methodological failure but the answer to a substantive question: about four-fifths of the headline tier effect was being carried by features that are only observable in respondents already in contact with the primary-care system. We therefore present the two indices as complementary instruments. The ten-input version is a screening tool that stratifies populations already touched by clinicians and is most useful for prioritizing follow-up among diagnosed risk groups. The six-input sensitivity version targets populations that have not yet been screened and is the policy-relevant instrument for community-level outreach where individual-level clinical histories are not available.
 

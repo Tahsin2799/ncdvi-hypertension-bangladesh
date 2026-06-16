@@ -126,7 +126,7 @@ p18 <- mk_plot(nb18,
   NULL,
   "Decision curve analysis: NCDVI hypertension models (BDHS 2017-18)",
   "Survey-weighted net benefit from 10-fold cross-validated predictions")
-ggsave("Figures/phase9_dca_internal.png", p18, width = 6.5, height = 5, dpi = 200)
+ggsave("Figures/dca_internal.png", p18, width = 6.5, height = 5, dpi = 200)
 
 p22 <- mk_plot(nb22,
   list(sensitivity = "Sensitivity 6-input NCDVI", confounders = "Confounders only",
@@ -134,7 +134,7 @@ p22 <- mk_plot(nb22,
   NULL,
   "Decision curve analysis: external validation (BDHS 2022, women 18+)",
   "Survey-weighted net benefit from 10-fold cross-validated predictions")
-ggsave("Figures/phase9_dca_external.png", p22, width = 6.5, height = 5, dpi = 200)
+ggsave("Figures/dca_external.png", p22, width = 6.5, height = 5, dpi = 200)
 
 ## ---- summary numbers -------------------------------------------------------
 rep_thr <- c(0.10, 0.20, 0.30)
@@ -166,4 +166,4 @@ saveRDS(list(thr = thr, internal = nb18, external = nb22,
                                  external_sensitivity = ur_s22),
              run_at = Sys.time()),
         "outputs/phase9_dca.rds")
-cat("\nSaved outputs/phase9_dca.rds, Figures/phase9_dca_internal.png, Figures/phase9_dca_external.png\n")
+cat("\nSaved outputs/phase9_dca.rds, Figures/dca_internal.png, Figures/dca_external.png\n")

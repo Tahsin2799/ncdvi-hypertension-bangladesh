@@ -41,3 +41,7 @@ outputs/ai_voice_guidance.md
 outputs/competitor_note.md
 outputs/dca_method_note.md
 outputs/perplexity_findings_raw.md
+
+# rendered manuscript build logs
+Manuscript/*.log
+/manuscript.log

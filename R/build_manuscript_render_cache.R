@@ -1,4 +1,4 @@
-# Build lightweight tables used by manuscript_BS.Rmd / manuscript_BS_v2.Rmd
+# Build lightweight tables used by manuscript.Rmd
 # so the render can readRDS() instead of re-sourcing the analysis pipeline.
 # Re-run only when the underlying analysis outputs change.
 

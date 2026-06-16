@@ -38,7 +38,7 @@ Headline: WeMix Tier-5 OR primary = 31.34 (24.33–40.37); sensitivity = 4.02 (3
 **Produced by:** `R/build_manuscript_render_cache.R`
 **Run on:** 2026-05-16
 
-These files let `manuscript_BS.Rmd` and `manuscript_BS_v2.Rmd` render quickly without re-running the data pipeline or refitting the multilevel models:
+These files let `manuscript.Rmd` render quickly without re-running the data pipeline or refitting the multilevel models:
 
 ```
 outputs/manuscript_bi_tab_short.rds       — small data frame for the bivariate NCDVI table

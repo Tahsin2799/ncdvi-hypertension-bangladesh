@@ -168,7 +168,7 @@ p_calib <- ggplot(bind_rows(calib_apparent5, calib_cv5),
   theme_minimal(base_size = 11) +
   theme(legend.position = "bottom")
 
-ggsave("Figures/phase8d_calibration.png", p_calib,
+ggsave("Figures/calibration_external.png", p_calib,
        width = 6.5, height = 5, dpi = 200)
 
 saveRDS(list(

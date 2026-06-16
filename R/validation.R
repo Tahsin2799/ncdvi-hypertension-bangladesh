@@ -128,7 +128,7 @@ calib_plot <- ggplot(bind_rows(calib_p_apparent, calib_p_cv),
   theme_minimal(base_size = 11) +
   theme(legend.position = "bottom")
 
-ggsave("Figures/phase4_calibration.png", calib_plot,
+ggsave("Figures/calibration_internal.png", calib_plot,
        width = 6.5, height = 5, dpi = 200)
 
 # calibration intercept and slope (logit recalibration)
