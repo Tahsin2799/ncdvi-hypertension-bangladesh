@@ -15,3 +15,12 @@
 Rplots.pdf
 # LaTeX (narrow — broad *.log would clobber outputs/*.log research artifacts)
 /manuscript_BS.log
+# research-helper / notebooklm per-project notebook cache
+.research-helper/
+
+# --- DHS microdata: never commit (Data Use Agreement prohibits redistribution) ---
+/bdhs-2022/
+*.dta
+*.DTA
+*.sav
+*.sas7bdat

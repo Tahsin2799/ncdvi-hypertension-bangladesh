@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "A Multiple Correspondence Analysis Approach to Mitigate the Non-Communicable Disease (NCD) Epidemic: Introducing a Health-Related Behavior-Based NCD Vulnerability Index"
+abstract: >-
+  Analysis code for constructing and validating an NCD Vulnerability Index
+  (NCDVI) for hypertension in Bangladesh, built from BDHS 2017-18 data using
+  multiple correspondence analysis and multilevel logistic regression, with
+  TRIPOD-compliant internal validation, decision curve analysis, and external
+  validation on BDHS 2022. The repository contains analysis code only; the BDHS
+  microdata must be obtained from The DHS Program under its Data Use Agreement.
+type: software
+authors:
+  - given-names: "A. F. M. Tahsin"
+    family-names: "Shahriar"
+    affiliation: "Institute of Statistical Research and Training (ISRT), University of Dhaka, Dhaka-1000, Bangladesh"
+    email: "tshahriar@isrt.ac.bd"
+  - given-names: "Nasrin"
+    family-names: "Lipi"
+    affiliation: "Institute of Statistical Research and Training (ISRT), University of Dhaka, Dhaka-1000, Bangladesh"
+    email: "nlipi@isrt.ac.bd"
+license: MIT
+repository-code: "https://github.com/Tahsin2799/BS_project"
+keywords:
+  - hypertension
+  - non-communicable diseases
+  - vulnerability index
+  - multiple correspondence analysis
+  - multilevel logistic regression
+  - Bangladesh
+  - BDHS
+  - external validation
+# version and doi will be filled in by Zenodo on first release; after minting,
+# add:
+#   version: 1.0.0
+#   doi: 10.5281/zenodo.XXXXXXX
+#   date-released: 2026-06-16
