@@ -5,7 +5,6 @@
 .positai
 /Datasets
 /Data_reports
-/Figures
 /Manuscipt
 
 # --- research-hygiene additions 2026-05-16 ---
@@ -24,3 +23,21 @@ Rplots.pdf
 *.DTA
 *.sav
 *.sas7bdat
+
+# --- local-only: redundant build artifacts (old manuscript versions, tests, logs) ---
+/_archive/
+
+# --- Claude Code / agent context: keep local, never push ---
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# --- internal working notes (kept locally, not part of the public repo) ---
+REVAMP_LOG.md
+LITERATURE_GAPS.md
+LITERATURE_GAPS.html
+MANUSCRIPT_REVIEW_2026-06-08.md
+outputs/ai_voice_guidance.md
+outputs/competitor_note.md
+outputs/dca_method_note.md
+outputs/perplexity_findings_raw.md
