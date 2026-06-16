@@ -29,8 +29,6 @@ keywords:
   - Bangladesh
   - BDHS
   - external validation
-# version and doi will be filled in by Zenodo on first release; after minting,
-# add:
-#   version: 1.0.0
-#   doi: 10.5281/zenodo.XXXXXXX
-#   date-released: 2026-06-16
+version: 1.0.0
+doi: 10.5281/zenodo.20719301
+date-released: 2026-06-16
